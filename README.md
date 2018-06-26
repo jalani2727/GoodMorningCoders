@@ -1,4 +1,4 @@
-# Good Morning Coders
+# Good Morning Coders!
 
 Good Morning Coders brings coders of many popular programming languages together to share their coding knowledge, seek knowledge from other coders, share their projects in progress, and plan projects.
 
