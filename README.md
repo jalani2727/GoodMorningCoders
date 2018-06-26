@@ -18,6 +18,11 @@ Good Morning Coders brings coders of many popular programming languages together
 
 ## Development Process
 
+### -Concept-
+The concept of Good Morning Coders is to develop a site where computer programmers can come together to either share their knowledge of the art of coding regardless of what language it is, share their projects or project ideas, and resolve any of the common issues coders face on the daily basis.
+
+Coding is not a skill that can be perfected. It is a skill that will continuously require you to go outside of your current knowledge to seek new techniques to solve coding-related problems whether it be done through testing or simply seeking knowledge from a fellow programmer. Good Morning Coders is a source for people to share and learn. It is also a source for people to share their ideas and even assemble a team to bring an idea to life.
+
 ## License
 ### Copyright 2018 Ryan Miller
 
