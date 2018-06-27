@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const setupAuth = require("./auth");
+const ensureAuthenticated = require("./auth").ensureAuthenticated;
 
 
 //Express.js
@@ -34,10 +35,10 @@ const siteDB = require("./db");
 
 
 //Good Morning Coders Homepage
-app.get("/", function(request, response) {
+app.get("/", ensureAuthenticated, function(request, response) {
     response.render("home", {
         layout: "homepage",
-        title: "Good Morning Coders!",
+        title: "Good Morning Coders",
         isLoggedIn: request.isAuthenticated()
     });
 });

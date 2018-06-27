@@ -1,15 +1,47 @@
 <!--Header Content-->
-<header>
+<header class="customHeader">
 
+    <!--Left Portion of Header-->
     <div class="customHeaderLeft">
+
         <!--Title Logo-->
         <span>{{title}}</span>
 
     </div>
 
+
+    <!--Middle Portion of Header-->
+    <center>
+
+        <div class="customHeaderMiddle">
+
+            <!--Sun Logo-->
+            <img src="/images/sunImage.png">
+
+        </div>
+
+    </center>
+
+
+    <!--Right Portion of Header-->
     <div class="customHeaderRight">
-        <!--Login Button-->
-        <a href="">Login</a>
+        
+        <!--Login / Logout-->
+        {{#if isLoggedIn}}
+
+            <a href="/logout">Logout</a>
+
+        {{else}}
+
+            <a href="/login">Login</a>
+
+        {{/if}}
+
+        <!--Profile-->
+        <a href="/{{accountID}}/profile">Profile</a>
+
+        <!--Link-->
+        <a href="/about">About</a>
 
     </div>
 
