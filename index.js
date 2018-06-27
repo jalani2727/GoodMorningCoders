@@ -34,15 +34,11 @@ const siteDB = require("./db");
 
 
 //Good Morning Coders Homepage
-app.get("/", (request, response) => {
-    todoList.getAll()
-    .then((data) => {
-        console.log(data);
-        response.render("homepage", {
-            todos: data
-        });
-    })
-    .catch((error) => { console.log(error)});
+app.get("/", function(request, response) {
+    response.render("home", {
+        layout: "homepage",
+        message: "Good Morning Coders!"
+    });
 });
 
 
