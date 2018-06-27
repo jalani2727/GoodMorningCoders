@@ -18,7 +18,11 @@ const db = pgp(cn);
 //  .then((data) => {console.log(data); })
 //  .catch((error) => {console.log(error); });
 
-// Topic section function
+
+
+
+
+// Topic Section functions
 function createTopic(newTopicTitle, newContent) {
   return db.query("insert into topics (TopicName, UserInput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
 }
@@ -34,6 +38,7 @@ function editTopicContent(editedContent) {
 function deleteTopicById(id) {
   return db.query("delete from topics where id = $1", [id])
 }
+
 
 // Comments Section Functions 
 function postComment(newPost) {
@@ -52,7 +57,8 @@ function searchTopic(searchString) {
   return db.query("select * from topics where TopicName ilike '%$1#%'", [searchString])
 }
 
-// Users table Functions 
+
+// Users Table Functions 
 function createUsername (newName) {
   return db.query("insert into users (Username) values ('$1#') returning id", [newName])
 }

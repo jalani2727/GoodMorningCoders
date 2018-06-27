@@ -10,6 +10,13 @@ create table comments (
     Username character varying(100) NOT NULL,
 );
 
+create table topics(    
+    id serial primary key,
+    TopicName character varying(500) NOT NULL,
+    UserInput text,
+    Username character varying(100) NOT NULL,
+);
+
 create table users (
     id serial primary key,
     UserId integer NOT NULL,
@@ -23,9 +30,3 @@ create table users (
     PostsMade integer NOT NULL
 );
 
-create table topics(    
-    id serial primary key,
-    TopicName character varying(500) NOT NULL,
-    UserInput text,
-    Username character varying(100) NOT NULL,
-);
