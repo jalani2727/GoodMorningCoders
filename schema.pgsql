@@ -1,3 +1,0 @@
---create table dbName (
---    id serial primary key,
---);
