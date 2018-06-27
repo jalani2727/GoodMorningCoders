@@ -3,14 +3,12 @@ const pgp = require("pg-promise")();
 const cn = {
   host: "localhost",
   port: 5432,
-  database: "dbName",
+  database: "Good-morning-coders",
   user: "postgres",
   password: ""
 };
 
 const db = pgp(cn);
-
-
 
 
 //Site Functions
@@ -20,6 +18,7 @@ const db = pgp(cn);
 //  .then((data) => {console.log(data); })
 //  .catch((error) => {console.log(error); });
 
+// Topic section function
 function createTopic(newTopicTitle, newContent) {
   return db.query("insert into topics (TopicName, UserInput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
 }
@@ -36,7 +35,7 @@ function deleteTopicById(id) {
   return db.query("delete from topics where id = $1", [id])
 }
 
-
+// Comments Section Functions 
 function postComment(newPost) {
   return db.query("insert into comments (UserInput) values ('$1#') returning id", [newPost])
 }
@@ -51,4 +50,17 @@ function deleteCommentById(id) {
 
 function searchTopic(searchString) {
   return db.query("select * from topics where TopicName ilike '%$1#%'", [searchString])
+}
+
+// Users table Functions 
+function createUsername (newName) {
+  return db.query("insert into users (Username) values ('$1#') returning id", [newName])
+}
+
+function createNickname (newName) {
+  return db.query("insert into users (Nickname) values ('$1#') returning id", [newName])
+}
+
+function createBio (textInput) {
+  return db.query("insert into users (Bio) values ('$1#') returning id", [textInput])
 }
