@@ -37,7 +37,8 @@ const siteDB = require("./db");
 app.get("/", function(request, response) {
     response.render("home", {
         layout: "homepage",
-        message: "Good Morning Coders!"
+        title: "Good Morning Coders!",
+        isLoggedIn: request.isAuthenticated()
     });
 });
 
