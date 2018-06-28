@@ -1,0 +1,144 @@
+/*Webpage Design*/
+body {
+    overflow-x: hidden;
+
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.bodyWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+
+
+
+/*Custom Fonts*/
+@font-face {
+    font-family: "f2-tecnocratica";
+    src: url("../fonts/f2_tecnocratica_regular/f2-tecnocratica-ffp.ttf");
+}
+
+
+
+
+/*Header Design*/
+.customHeader {
+    background-color: rgb(0,0,0);
+    height: 200px;
+    width: 100%;
+
+    letter-spacing: 4px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Left Portion*/
+.customHeaderLeft {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*Middle Portion*/
+.customHeaderMiddle {
+    display: flex;
+    flex-direction: row;
+}
+
+/*Right Portion*/
+.customHeaderRight {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/*Title Logo*/
+.customHeaderLeft span {
+    font-family: "f2-tecnocratica";
+    font-size: 56px;
+
+    color: rgb(255,255,255);
+
+    padding: 20px;
+
+    word-wrap: initial;
+
+    -webkit-text-stroke-width: 0.6px;
+    -webkit-text-stroke-color: rgb(255,192,68);
+}
+
+/*Right Side Navigation*/
+.navRight {
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column
+}
+
+.navRight a {
+    font-family: "f2-tecnocratica";
+    font-size: 24px;
+
+    color: rgb(255,255,255);
+
+    padding: 10px;
+    
+    text-decoration: none;
+    list-style-type: none;
+
+    display: inline-block;
+
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: rgb(255,192,68);
+}
+
+.navRight a:hover {
+    font-family: "f2-tecnocratica";
+    font-size: 24px;
+
+    color: rgb(255,192,68);
+    
+    text-decoration: none;
+    list-style-type: none;
+
+    display: inline-block;
+}
+
+/*Sun Logo*/
+.customHeaderMiddle img {
+    height: 200px;
+    width: 200px;
+
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+
+
+/*Home Dashboard Design*/
+.homeDashboard {
+    background-size: 100%;
+    background-color: rgb(173, 173, 173);
+    background-blend-mode: multiply;
+
+    height: 100%;
+    width: 100%;
+
+    min-height: 100vh;
+    min-width: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}

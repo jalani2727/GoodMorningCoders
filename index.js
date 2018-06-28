@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const setupAuth = require("./auth");
+const ensureAuthenticated = require("./auth").ensureAuthenticated;
 
 
 //Express.js
@@ -27,17 +28,84 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 
+//Weather API
+weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6"
 //Site Database
 const siteDB = require("./db");
 
 
 
 
+//Weather API
+//Home Screen Background
+var homeBG = "";
+
+//Background Selection
+//Morning
+var morningBG = [
+    "/images/backgrounds/morning1.jpg",
+    "/images/backgrounds/morning2.jpg",
+    "/images/backgrounds/morning3.jpg",
+    "/images/backgrounds/morning4.jpg"
+]
+
+//Midday
+var middayBG = [
+    "/images/backgrounds/midday1.jpg",
+    "/images/backgrounds/midday2.jpeg",
+    "/images/backgrounds/midday3.jpg",
+    "/images/backgrounds/midday4.jpg"
+]
+
+//Afternoon
+var afternoonBG = [
+    "/images/backgrounds/afternoon1.jpg",
+    "/images/backgrounds/afternoon2.jpg",
+    "/images/backgrounds/afternoon3.jpg",
+    "/images/backgrounds/afternoon4.jpg"
+]
+
+//Night
+var nightBG = [
+    "/images/backgrounds/night1.jpg",
+    "/images/backgrounds/night2.jpeg",
+    "/images/backgrounds/night3.jpeg",
+    "/images/backgrounds/night4.jpg"
+]
+
 //Good Morning Coders Homepage
 app.get("/", function(request, response) {
+    //Set Background Based on Time
+    let currentTime = new Date();
+    let hour = currentTime.getHours();
+
+    //Morning
+    if (hour >= 6 && hour < 12) { 
+        homeBG = morningBG[Math.floor(Math.random() * morningBG.length)];
+    }
+
+    //Midday
+    if (hour >= 12 && hour < 17) { 
+        homeBG = middayBG[Math.floor(Math.random() * middayBG.length)];
+    }
+
+    //Afternoon
+    if (hour === 17 && hour < 18) { 
+        homeBG = afternoonBG[Math.floor(Math.random() * afternoonBG.length)];
+    }
+
+    //Night
+    if (hour >= 18) { 
+        homeBG = nightBG[Math.floor(Math.random() * nightBG.length)];
+    }
+
+
+    //Set Page Render
     response.render("home", {
         layout: "homepage",
-        message: "Good Morning Coders!"
+        title: "Good Morning Coders",
+        homeBG: homeBG,
+        isLoggedIn: request.isAuthenticated()
     });
 });
 
