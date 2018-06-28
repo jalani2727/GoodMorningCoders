@@ -20,19 +20,17 @@ const db = pgp(cn);
 
 
 
-
-
 // Topic Section functions
 function createTopic(newTopicTitle, newContent) {
   return db.query("insert into topics (topicname, userinput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
 }
 
 function editTopicTitle(newTitle) {
-  return db.query("update topics set topicname = $1#", [newTitle])
+  return db.query("update topics set topicname = '$1#'", [newTitle])
 }
 
 function editTopicContent(editedContent) {
-  return db.query("update topics set userinput = $1#", [editedContent])
+  return db.query("update topics set userinput = '$1#'", [editedContent])
 }
 
 function deleteTopicById(id) {
@@ -46,11 +44,11 @@ function postComment(newPost) {
 }
 
 function editComment(editedPost) {
-  return db.query("update comments set userinput = $1#", [editedPost])
+  return db.query("update comments set userinput = '$1#'", [editedPost])
 }
 
 function deleteCommentById(id) {
-  return db.query("delete from comments where id= $1", [id])
+  return db.query("delete from comments where id= '$1'", [id])
 }
 
 function searchTopic(searchString) {
@@ -87,5 +85,4 @@ module.exports = {
   createNickname,
   createBio,
   createHometown
-
 }

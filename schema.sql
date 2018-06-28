@@ -8,8 +8,11 @@
 create table comments (
     id serial primary key,
     userid integer references users (id),
+    topicid integer references
     userinput text
+
 );
+
 
 create table topics(    
     id serial primary key,
@@ -17,6 +20,7 @@ create table topics(
     topicname character varying(500) NOT NULL,
     userinput text
 );
+
 
 create table users (
     id serial primary key,
