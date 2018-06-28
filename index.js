@@ -28,12 +28,15 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 
+//Weather API
+weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6"
 //Site Database
 const siteDB = require("./db");
 
 
 
 
+//Weather API
 //Home Screen Background
 var homeBG = "";
 
