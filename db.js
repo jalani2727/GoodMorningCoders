@@ -67,6 +67,25 @@ function createNickname (newName) {
   return db.query("insert into users (nickname) values ('$1#') returning id", [newName])
 }
 
+function createHometown (city) {
+  return db.query("insert into users (hometown) values ('$1#') returning id" [city])
+}
+
 function createBio (textInput) {
   return db.query("insert into users (bio) values ('$1#') returning id", [textInput])
+}
+
+module.exports = {
+  createTopic,
+  editTopicTitle,
+  editTopicContent,
+  deleteTopicById,
+  postComment,
+  deleteCommentById,
+  searchTopic,
+  createUsername,
+  createNickname,
+  createBio,
+  createHometown
+
 }

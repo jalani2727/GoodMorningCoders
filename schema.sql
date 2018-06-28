@@ -7,15 +7,15 @@
 
 create table comments (
     id serial primary key,
-    userid integer references users (id)
-    userinput text,
+    userid integer references users (id),
+    userinput text
 );
 
 create table topics(    
     id serial primary key,
-    userid integer references users (id)
+    userid integer references users (id),
     topicname character varying(500) NOT NULL,
-    userinput text,
+    userinput text
 );
 
 create table users (
@@ -24,10 +24,11 @@ create table users (
     bio text,
     username character varying(100) NOT NULL,
     nickname character varying(100) NOT NULL,
-    location character varying(100) DEFAULT 'ATL'::character varying NOT NULL,
+    hometown character varying(100) DEFAULT 'ATL',
 
     -- These values shouldnt be regulated by users 
     datejoined date,
+    -- changing number. Not sure of how to do this yet.
     postsmade integer NOT NULL
 );
 
