@@ -104,8 +104,9 @@ const setupAuth = (app) => {
 
       console.log('you just logged in');
       console.log(req.isAuthenticated());
-
-      res.redirect('/');
+      req.session.save(() => {
+        res.redirect('/');
+      });
     }
   );
 
@@ -128,7 +129,7 @@ const ensureAuthenticated = (req, res, next) => {
 
   console.log('clearly, they are not authenticated');
   // denied. redirect to login
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 // Our default export is the `setupAuth` function.
