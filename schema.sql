@@ -28,7 +28,7 @@ create table users (
 -- Categories Table (Ryan is building this)
 create table categories (
    id serial primary key,
-   title varchar(50)
+   categoryname varchar(50)
 );
 
 
@@ -53,9 +53,11 @@ create table posts(
     nickname text references users (nickname),
     numberofcomments integer references ???? (???), --(look up post count)
 
-    -- So the user knows what topic they're posting under 
+    -- So the user knows what category and topic they're posting under 
     topicid integer references topics (topicid),
     topicname text references topics (topicname),
+    category
+
 );
 
 
