@@ -1,15 +1,26 @@
 //Init PG-Promise
 const pgp = require("pg-promise")();
 const cn = {
-  host: "localhost",
-  port: 5432,
-  database: "Good-morning-coders",
-  user: "postgres",
-  password: ""
+    host: "localhost",
+    port: 5432,
+    database: "Good-morning-coders",
+    user: "postgres",
+    password: ""
 };
 
 const db = pgp(cn);
 
+
+//Site Functions
+//Get All Categories
+function getCategories() {
+    return db.any('select * from categories');
+}
+
+//Get All Categories
+function getOneCategory(id) {
+    return db.oneOrNone("select * from categories where id=$1", [id]);
+}
 
 //Site Functions for index.js
 
@@ -75,7 +86,6 @@ function getPostContentById(id) {
   return db.any("select postcontent from posts where id = '$1'", [id]);
 }
 
-
 function getCommentsById(id) {
   return db.any("select commentcontent from comments where id = '$1'", [id]);
 }
@@ -121,6 +131,7 @@ function deleteCommentById(id) {
 // Update-Posts Page
 function editPostTitle(editedTitle) {
   return db.query("update posts set posttitle = '$1#'", [editedTitle])
+
 }
 
 function editPostContent(editedContent) {
@@ -129,7 +140,7 @@ function editPostContent(editedContent) {
 
 
 
-
+//Export All Modules
 module.exports = {
  createUsername,
  createNickname,
@@ -151,5 +162,7 @@ module.exports = {
  postComment,
  deleteCommentById,
  editPostTitle,
- editPostContent
+ editPostContent,
+ getCategories,
+ getOneCategory
 };

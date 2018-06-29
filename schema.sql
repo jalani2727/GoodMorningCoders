@@ -1,21 +1,57 @@
+create table categories (
+    id serial primary key,
+    categoryname varchar(50)
+);
 
--- create table dbName (
---    id serial primary key,
--- );
+insert into categories (categoryname)
+values 
+('HTML'),
+('CSS'),
+('JavaScript'),
+('Ajax'),
+('Node'),
+('Python'),
+('C++'),
+('C#'),
+('C'),
+('PHP'),
+('SQL'),
+('Java'),
+('Ruby'),
+('Perl')
 
 
+create table comments (
+    id serial primary key,
+    userid integer references users (id),
+    userinput text
+);
+
+create table topics(    
+    id serial primary key,
+    userid integer references users (id),
+    topicname character varying(500) NOT NULL,
+    userinput text
+);
 
 
 
 -- Tables to store information populated by individual users about themselves and their account
+
 
 create table users (
     id serial primary key,
     userid integer NOT NULL,
     -- These three columns may be unecessary if we are pulling this info from gihub. Or haps the info from github will be pushed to a table and references in these columns
     bio text,
+
+    username character varying(100) NOT NULL,
+    nickname character varying(100) NOT NULL,
+    location character varying(100) DEFAULT 'ATL',
+
     username varchar(100) NOT NULL,
     hometown varchar(100) DEFAULT 'ATL',
+
 
     nickname varchar(100) NOT NULL,
     -- These values shouldnt be regulated by users 
