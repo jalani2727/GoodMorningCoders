@@ -14,7 +14,7 @@ create table comments (
 );
 
 
-create table topics(    
+create table posts(    
     id serial primary key,
     userid integer references users (id),
     topicname character varying(500) NOT NULL,

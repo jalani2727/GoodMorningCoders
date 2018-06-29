@@ -22,19 +22,19 @@ const db = pgp(cn);
 
 // Topic Section functions
 function createTopic(newTopicTitle, newContent) {
-  return db.query("insert into topics (topicname, userinput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
+  return db.query("insert into posts (topicname, userinput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
 }
 
 function editTopicTitle(newTitle) {
-  return db.query("update topics set topicname = '$1#'", [newTitle])
+  return db.query("update posts set topicname = '$1#'", [newTitle])
 }
 
 function editTopicContent(editedContent) {
-  return db.query("update topics set userinput = '$1#'", [editedContent])
+  return db.query("update posts set userinput = '$1#'", [editedContent])
 }
 
 function deleteTopicById(id) {
-  return db.query("delete from topics where id = $1", [id])
+  return db.query("delete from posts where id = $1", [id])
 }
 
 
@@ -52,11 +52,11 @@ function deleteCommentById(id) {
 }
 
 function searchTopic(searchString) {
-  return db.query("select * from topics where topicname ilike '%$1#%'", [searchString])
+  return db.query("select * from posts where topicname ilike '%$1#%'", [searchString])
 }
 
 
-// Users Table Functions 
+// Users Page Functions 
 function createUsername (newName) {
   return db.query("insert into users (username) values ('$1#') returning id", [newName])
 }
@@ -72,6 +72,8 @@ function createHometown (city) {
 function createBio (textInput) {
   return db.query("insert into users (bio) values ('$1#') returning id", [textInput])
 }
+
+
 
 module.exports = {
   createTopic,
