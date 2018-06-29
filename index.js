@@ -30,17 +30,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //Weather API
 weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6"
+
 //Site Database
 const siteDB = require("./db");
 
 
 
 
-//Weather API
 //Home Screen Background
 var homeBG = "";
 
-//Background Selection
+//Background Image Selection
 //Morning
 var morningBG = [
     "/images/backgrounds/morning1.jpg",
@@ -73,7 +73,10 @@ var nightBG = [
     "/images/backgrounds/night4.jpg"
 ]
 
-//Good Morning Coders Homepage
+
+
+
+//Homepage
 app.get("/", function(request, response) {
     //Set Background Based on Time
     let currentTime = new Date();
@@ -101,14 +104,50 @@ app.get("/", function(request, response) {
 
 
     //Set Page Render
-    response.render("home", {
-        layout: "homepage",
-        title: "Good Morning Coders",
-        homeBG: homeBG,
-        isLoggedIn: request.isAuthenticated()
-    });
+    siteDB.getCategories()
+    .then((data) => {
+        console.log(data);
+        response.render("home", {
+            layout: "homepage",
+            title: "Good Morning Coders",
+            homeBG: homeBG,
+            category: data,
+            isLoggedIn: request.isAuthenticated()
+        });
+    })
+    .catch((error) => {console.log(error)});
 });
 
+
+
+
+//Topics Page
+app.get("/:id", function(request, response) {
+    siteDB.getOneCategory(request.params.id)
+    .then((data) => {
+        console.log(data);
+        response.render("topics", {       
+            layout: "topicspage",
+            category: data,
+            isLoggedIn: request.isAuthenticated()
+        });
+    })
+    .catch((error) => {console.log(error)});
+});
+
+
+
+
+//Topics Page
+// app.get("/topics/:id", function(request, response) {
+//     siteDB.getCategories(request.params.id);
+//         .then((category) => {
+//             console.log(category);
+//             response.render("categories", category {});
+
+//         })
+//         .catch((error) => {console.log(error)});
+// });
 
 
 

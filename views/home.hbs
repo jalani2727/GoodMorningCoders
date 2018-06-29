@@ -56,7 +56,68 @@
 
 <!--Home Screen Dashboard-->
 <div class="homeDashboard" style="background-image: url('{{homeBG}}')">
-    <!--<span>{{currentWeather}}</span>-->
+
+    <!--Coding Languages Content-->
+    <div class="contentBoxMain">
+
+        <!--Content Title-->
+        <span id="mainBoxTitle"><i class="fa fa-code"></i> CODING LANGUAGES</span>
+
+
+        <!--Languages-->
+        <div class="contentBoxLinks">
+
+
+            <!--Language Selection-->
+            {{#each category}}
+
+            <div>
+
+                <a href="/{{id}}">{{categoryname}}</a>
+
+            </div>
+
+            {{/each}}
+
+
+
+        </div>
+
+</div>
+
+
+    <!--Small Box Container-->
+    <div class="contentBoxContainer">
+
+        <!--Weather Content Box-->
+        <div class="contentBoxSmall">
+
+            <!--Content Title-->
+            <span id="smallBoxTitle"><i class="fa fa-cloud"></i> WEATHER</i></span>
+
+        </div>
+
+
+        <!--Time Content Box-->
+        <div class="contentBoxSmall">
+
+            <!--Content Title-->
+            <span id="smallBoxTitle"><i class="fa fa-clock-o"></i> TIME</span>
+
+        </div>
+
+
+        <!--Undecided Content Box-->
+        <div class="contentBoxSmall">
+
+            
+        </div>
+
+        <!--Undecided Content Box-->
+        <div class="contentBoxSmall"></div>
+
+    </div>
+
 </div>
 
 
