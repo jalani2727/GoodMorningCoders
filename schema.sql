@@ -33,6 +33,6 @@ create table users (
     -- These values shouldnt be regulated by users 
     datejoined date,
     -- changing number. Not sure of how to do this yet.
-    postsmade integer NOT NULL
+    postsbyuser integer NOT NULL
 );
 

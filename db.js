@@ -11,7 +11,7 @@ const cn = {
 const db = pgp(cn);
 
 
-//Site Functions
+//Site Functions for index.js
 
 // to use: 
 // <functionName>()
