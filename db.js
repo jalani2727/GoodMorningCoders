@@ -48,10 +48,13 @@ function moveTopicCategoryById(newId, topicName) {
   return db.query("update topics set categoryid ='$1' where topicname is ='$2#'",[newId, topicName])
 }
 
+function movePostTopicById (newId, postName) {
+  return db.query ("update posts set topicif = '$1' where postname is ='$2#'", [newId, postName] )
+}
 
 
-// Display Webpage Location Functions 
-// Use these to show category and topics names on pages based on category and topic id
+// Get-Functions
+// Get-Functions for use on all pages
 function getCategoryNameById(id) {
   return db.any("select categoryname from categories where id = '$1'", [id]);
 }
@@ -60,9 +63,38 @@ function getTopicNameById(id) {
   return db.any("select topicname from topics where id = '$1'", [id]);
 }
 
+function getPostNameById(id) {
+  return db.any("select postname from posts where id = '$1'", [id]);
+}
+// Display-Posts Page 
+// Get-Functions 
 
 
-// Posts Page functions
+
+
+
+
+
+
+
+
+// Category-Specific Topics Page 
+
+// I beleive a function to show the number of posts per topic goes here 
+
+
+
+// Display Posts Page
+
+
+function deletepostById(id) {
+  return db.query("delete from posts where id = $1", [id])
+}
+
+
+
+// Create-Posts Page 
+// Functions
 function createpost(newpostTitle, newContent) {
   return db.query("insert into posts (postname, postcontent) values ('$1#', '$2#')returning id" , [newpostTitle, newContent] );
 }
@@ -71,17 +103,16 @@ function editpostTitle(newTitle) {
   return db.query("update posts set postname = '$1#'", [newTitle])
 }
 
+
 function editpostcontent(editedContent) {
   return db.query("update posts set postcontent = '$1#'", [editedContent])
 }
 
-function deletepostById(id) {
-  return db.query("delete from posts where id = $1", [id])
-}
 
 
 
-// Comments Section Functions 
+
+// Create Comment Page 
 function postComment(newPost) {
   return db.query("insert into comments (postcontent) values ('$1#') returning id", [newPost])
 }
@@ -94,9 +125,7 @@ function deleteCommentById(id) {
   return db.query("delete from comments where id= '$1'", [id])
 }
 
-function searchpost(searchString) {
-  return db.query("select * from posts where postname ilike '%$1#%'", [searchString])
-}
+
 
 
 
