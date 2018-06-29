@@ -48,13 +48,17 @@ function moveTopicCategoryById(newId, topicName) {
   return db.query("update topics set categoryid ='$1' where topicname is ='$2#'",[newId, topicName])
 }
 
-function movePostTopicById (newId, postName) {
-  return db.query ("update posts set topicif = '$1' where postname is ='$2#'", [newId, postName] )
+function movePostTopicById (newId, postTitle) {
+  return db.query ("update posts set topic if = '$1' where posttitle is ='$2#'", [newId, postTitle] )
 }
 
 
 // Get-Functions
 // Get-Functions for use on all pages
+function getUsernameByUserId (userid) {
+  return db.query("select username from column where userid = '$1'", [userid])
+}
+
 function getCategoryNameById(id) {
   return db.any("select categoryname from categories where id = '$1'", [id]);
 }
@@ -63,62 +67,50 @@ function getTopicNameById(id) {
   return db.any("select topicname from topics where id = '$1'", [id]);
 }
 
-function getPostNameById(id) {
-  return db.any("select postname from posts where id = '$1'", [id]);
+function getPostTitleById(id) {
+  return db.any("select posttitle from posts where id = '$1'", [id]);
 }
-// Display-Posts Page 
-// Get-Functions 
+
+function getPostContentById(id) {
+  return db.any("select postcontent from posts where id = '$1'", [id]);
+}
 
 
-
-
-
+function getCommentsById(id) {
+  return db.any("select commentcontent from comments where id = '$1'", [id]);
+}
 
 
 
 
 
 // Category-Specific Topics Page 
-
+// Run get functions to display relevant names
 // I beleive a function to show the number of posts per topic goes here 
 
 
 
-// Display Posts Page
+// Topic-Specific Posts Page
+// Really just running Get-Functions and using the post count thing i havent looked up yet 
 
-
-function deletepostById(id) {
+function deletePostById(id) {
   return db.query("delete from posts where id = $1", [id])
 }
 
-
-
 // Create-Posts Page 
-// Functions
-function createpost(newpostTitle, newContent) {
-  return db.query("insert into posts (postname, postcontent) values ('$1#', '$2#')returning id" , [newpostTitle, newContent] );
+function createPost(newpostTitle, newContent) {
+  return db.query("insert into posts (posttitle, postcontent) values ('$1#', '$2#')returning id" , [newpostTitle, newContent] );
 }
 
-function editpostTitle(newTitle) {
-  return db.query("update posts set postname = '$1#'", [newTitle])
+// Post Display Page 
+// use the get functions to show the post title and contents
+
+function editComment(editedComment) {
+  return db.query("update comments set commentcontent = '$1#'", [editedComment]);
 }
 
-
-function editpostcontent(editedContent) {
-  return db.query("update posts set postcontent = '$1#'", [editedContent])
-}
-
-
-
-
-
-// Create Comment Page 
-function postComment(newPost) {
-  return db.query("insert into comments (postcontent) values ('$1#') returning id", [newPost])
-}
-
-function editComment(editedPost) {
-  return db.query("update comments set postcontent = '$1#'", [editedPost])
+function createComment(newComment) {
+  return db.query("insert into comments (commentcontent) values ('$1#')", [newComment]);
 }
 
 function deleteCommentById(id) {
@@ -126,23 +118,38 @@ function deleteCommentById(id) {
 }
 
 
+// Update-Posts Page
+function editPostTitle(editedTitle) {
+  return db.query("update posts set posttitle = '$1#'", [editedTitle])
+}
+
+function editPostContent(editedContent) {
+  return db.query("update posts set postcontent = '$1#'", [editedContent])
+}
 
 
 
 
 module.exports = {
-  getCategoryNameById,
-  getTopicNameById,
-  createpost,
-  editpostTitle,
-  editpostcontent,
-  deletepostById,
-  searchpost,
-  postComment,
-  deleteCommentById,
-  createUsername,
-  createNickname,
-  createBio,
-  createHometown,
-  insertDateCreated
+ createUsername,
+ createNickname,
+ createHometown,
+ createBio,
+ insertDateCreated,
+ moveTopicCategoryById,
+ movePostTopicById,
+ getUsernameByUserId,
+ getCategoryNameById,
+ getTopicNameById,
+ getPostTitleById,
+ getPostContentById,
+ getCommentsById,
+ deletePostById,
+ createPost,
+ createComment,
+ editComment,
+ postComment,
+ deleteCommentById,
+ editPostTitle,
+ editPostContent
 };

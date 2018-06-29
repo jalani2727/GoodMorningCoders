@@ -38,36 +38,39 @@ create table topics (
     id serial primary key,
     -- We'll manually input the topics into the table 
     topicname varchar(50)
-    -- so the user know what category they're in
-    categoryid integer references categories (categoryname),
+    -- so that we can move the topic to another category with a move function
+    categoryid integer references categories (id),
 );
 
 
 -- Table for the posts page following the page after a specific topic is seleced from the topics page
 create table posts(    
     id serial primary key,
-    postcontent text
-    postname varchar(100)
+
+    postcontent text,
+    posttitle varchar(100),
 
     -- So that users know who made the post
     userid integer references users (id),
     nickname text references users (nickname),
-    numberofcomments integer references ???? (???), --(look up post count)
+    numberofcomments integer references ???? (???), --(look up 'post count sql' on google )
 
-    -- So the user knows what category and topic they're posting under 
+    -- so that admins can move the topic to another topic with a move function
     topicid integer references topics (id),
-    topicname text references topics (topicname),
-    categoryname text references categories (categoryname)
+    
 );
 
 
--- For use on the post-specific post page
+
+-- For use on the Post Display page
 create table comments (
     id serial primary key,
     userid integer references users (id),
-    commentid integer references comments (id)
-    userinput text
+    commentid integer references comments (id),
+    commentcontent varchar(500)
 );
+
+
 
 
 
