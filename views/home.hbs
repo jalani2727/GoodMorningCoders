@@ -25,24 +25,103 @@
 
     <!--Right Portion of Header-->
     <div class="customHeaderRight">
+
+        <div class="navRight">
         
-        <!--Login / Logout-->
-        {{#if isLoggedIn}}
+            <!--Login / Logout-->
+            {{#if isLoggedIn}}
 
-            <a href="/logout">Logout</a>
+                <a href="/logout">Logout</a>
 
-        {{else}}
+            {{else}}
 
-            <a href="/login">Login</a>
+                <a href="/login">Login</a>
 
-        {{/if}}
+            {{/if}}
 
-        <!--Profile-->
-        <a href="/{{accountID}}/profile">Profile</a>
+            <!--Profile-->
+            <a href="/{{accountID}}/profile">Profile</a>
 
-        <!--Link-->
-        <a href="/about">About</a>
+            <!--Link-->
+            <a href="/about">About</a>
+
+        </div>
 
     </div>
 
 </header>
+
+
+
+
+<!--Home Screen Dashboard-->
+<div class="homeDashboard" style="background-image: url('{{homeBG}}')">
+
+    <!--Coding Languages Content-->
+    <div class="contentBoxMain">
+
+        <!--Content Title-->
+        <span id="mainBoxTitle"><i class="fa fa-code"></i> CODING LANGUAGES</span>
+
+
+        <!--Languages-->
+        <div class="contentBoxLinks">
+
+
+            <!--Language Selection-->
+            {{#each category}}
+
+            <div>
+
+                <a href="/{{id}}">{{categoryname}}</a>
+
+            </div>
+
+            {{/each}}
+
+
+
+        </div>
+
+</div>
+
+
+    <!--Small Box Container-->
+    <div class="contentBoxContainer">
+
+        <!--Weather Content Box-->
+        <div class="contentBoxSmall">
+
+            <!--Content Title-->
+            <span id="smallBoxTitle"><i class="fa fa-cloud"></i> WEATHER</i></span>
+
+        </div>
+
+
+        <!--Time Content Box-->
+        <div class="contentBoxSmall">
+
+            <!--Content Title-->
+            <span id="smallBoxTitle"><i class="fa fa-clock-o"></i> TIME</span>
+
+        </div>
+
+
+        <!--Undecided Content Box-->
+        <div class="contentBoxSmall">
+
+            
+        </div>
+
+        <!--Undecided Content Box-->
+        <div class="contentBoxSmall"></div>
+
+    </div>
+
+</div>
+
+
+
+
+<!--Footer Content-->
+<footer></footer>

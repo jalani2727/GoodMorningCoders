@@ -1,0 +1,292 @@
+/*Webpage Design*/
+body {
+    overflow-x: hidden;
+
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.bodyWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+}
+
+
+
+
+/*Custom Fonts*/
+@font-face {
+    font-family: "f2-tecnocratica";
+    src: url("../fonts/f2_tecnocratica_regular/f2-tecnocratica-ffp.ttf");
+}
+
+@font-face {
+    font-family: "newscycle";
+    src: url("../fonts/news_cycle_regular/newscycle-regular.ttf");
+}
+
+
+
+
+/*Header Design*/
+.customHeader {
+    background-color: rgb(0,0,0);
+    height: 200px;
+    width: 100%;
+
+    letter-spacing: 4px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Left Portion*/
+.customHeaderLeft {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*Middle Portion*/
+.customHeaderMiddle {
+    display: flex;
+    flex-direction: row;
+}
+
+/*Right Portion*/
+.customHeaderRight {
+    width: 20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/*Title Logo*/
+.customHeaderLeft span {
+    font-family: "f2-tecnocratica";
+    font-size: 56px;
+
+    color: rgb(255,255,255);
+
+    padding: 20px;
+
+    word-wrap: initial;
+
+    -webkit-text-stroke-width: 0.6px;
+    -webkit-text-stroke-color: rgb(255,192,68);
+}
+
+/*Right Side Navigation*/
+.navRight {
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column
+}
+
+.navRight a {
+    font-family: "f2-tecnocratica";
+    font-size: 24px;
+
+    color: rgb(255,255,255);
+
+    padding: 10px;
+    
+    text-decoration: none;
+    list-style-type: none;
+
+    display: inline-block;
+
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: rgb(255,192,68);
+}
+
+.navRight a:hover {
+    font-family: "f2-tecnocratica";
+    font-size: 24px;
+
+    color: rgb(255,192,68);
+    
+    text-decoration: none;
+    list-style-type: none;
+
+    display: inline-block;
+}
+
+/*Sun Logo*/
+.customHeaderMiddle img {
+    height: 200px;
+    width: 200px;
+
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+
+
+/*Home Dashboard Design*/
+.homeDashboard {
+    background-size: 100%;
+    background-color: rgb(173, 173, 173);
+    background-blend-mode: multiply;
+
+    font-family: "newscycle";
+
+    color: rgb(255,255,255);
+
+    padding: 14px;
+
+    height: 100%;
+    width: 100%;
+
+    min-height: 100vh;
+    min-width: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.contentBoxContainer {
+    height: 596px;
+    width: 48%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.contentBoxMain {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    height: 400px;
+    width: 600px;
+
+    padding: 14px;
+
+    text-align: left;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow:    0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    box-shadow:         0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+
+    justify-content: flex-start;
+}
+
+.contentBoxSmall {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    height: 250px;
+    width: 250px;
+
+    padding: 14px;
+
+    text-align: left;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow:    0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    box-shadow:         0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+
+    justify-content: flex-end;
+}
+
+.contentBoxLinks {
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.contentBoxMain a {
+    font-size: 40px;
+    
+    color: rgb(138, 138, 138);
+
+    padding: 18px;
+    
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.contentBoxMain a:hover {
+    color: rgb(255, 255, 255);
+
+    transition: all 0.4s ease-in-out;
+}
+
+.homeDashboard #mainBoxTitle {
+    font-size: 32px;
+}
+
+.homeDashboard #smallBoxTitle {
+    font-size: 24px;
+}
+
+
+
+
+/*Topics Page Design*/
+.topicsHeader {
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topicsHeaderLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.topicsHeaderRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/*Topics Logo*/
+.topicsHeaderLeft span {
+    font-family: "newscycle";
+    font-size: 60px;
+
+    color: rgb(0, 0, 0);
+
+    padding: 20px;
+}
+
+/*Topics Links*/
+.topicsHeaderRight a {
+    font-family: "newscycle";
+    font-size: 26px;
+    
+    color: rgb(112, 112, 112);
+
+    padding: 18px;
+    
+    text-decoration: none;
+    list-style-type: none;
+}

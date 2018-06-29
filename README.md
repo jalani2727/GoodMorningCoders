@@ -4,7 +4,6 @@ Good Morning Coders brings coders of many popular programming languages together
 
 ## Authors
 * **Ryan Miller** - [Ryan's GitHub](https://github.com/Ryan330)
-* **Jalani Paul** - [Jalani's GitHub](https://github.com/jalani2727)
 
 ## Built With
 * HTML
@@ -25,7 +24,7 @@ The concept of Good Morning Coders is to develop a site where computer programme
 Coding is not a skill that can be perfected. It is a skill that will continuously require you to go outside of your current knowledge to seek new techniques to solve coding-related problems whether it be done through testing or simply seeking knowledge from a fellow programmer. Good Morning Coders is a source for people to share and learn. It is also a source for people to share their ideas and even assemble a team to bring an idea to life.
 
 ## License
-### Copyright 2018 Ryan Miller & Jalani Paul
+### Copyright 2018 Ryan Miller
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
