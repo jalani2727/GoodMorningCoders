@@ -1,9 +1,22 @@
-<header>
+<header class="topicsHeader">
 
-    {{#with category}}
+    <!--Topics Language Title-->
+    <div class="topicsHeaderLeft">
 
-        <h1>{{categoryname}} Topics</h1>
+        {{#with category}}
+
+            <span>{{categoryname}} Topics</span>
+        
+        {{/with}}
+
+    </div>
+
     
-    {{/with}}
+    <!--Create New Post-->
+    <div class="topicsHeaderRight">
+
+        <a href="/{{id}}/new-topic">Create New Topic</a>
+
+    </div>
 
 </header>

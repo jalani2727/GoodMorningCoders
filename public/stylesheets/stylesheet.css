@@ -240,3 +240,53 @@ body {
 .homeDashboard #smallBoxTitle {
     font-size: 24px;
 }
+
+
+
+
+/*Topics Page Design*/
+.topicsHeader {
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topicsHeaderLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.topicsHeaderRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/*Topics Logo*/
+.topicsHeaderLeft span {
+    font-family: "newscycle";
+    font-size: 60px;
+
+    color: rgb(0, 0, 0);
+
+    padding: 20px;
+}
+
+/*Topics Links*/
+.topicsHeaderRight a {
+    font-family: "newscycle";
+    font-size: 26px;
+    
+    color: rgb(112, 112, 112);
+
+    padding: 18px;
+    
+    text-decoration: none;
+    list-style-type: none;
+}

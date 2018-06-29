@@ -16,12 +16,12 @@ const db = pgp(cn);
 //Site Functions
 //Get All Categories
 function getCategories() {
-  return db.any('select * from categories');
+    return db.any('select * from categories');
 }
 
 //Get All Categories
 function getOneCategory(id) {
-  return db.oneOrNone("select * from categories where id=$1", [id]);
+    return db.oneOrNone("select * from categories where id=$1", [id]);
 }
 
 

@@ -136,6 +136,18 @@ app.get("/:id", function(request, response) {
 });
 
 
+//Create New Topic
+app.get("/:id/new-topic", (request, response) => {
+    todoList.getOneCategory(request.params.id)
+    .then((data) => {
+        response.render("topics", data);
+    })
+    .catch((error) => {console.log(error)});
+});
+
+app.post("/new-topic", (request, response) => {});
+
+
 
 
 //Topics Page
