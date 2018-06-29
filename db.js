@@ -22,7 +22,7 @@ const db = pgp(cn);
 
 // Topic Section functions
 function createTopic(newTopicTitle, newContent) {
-  return db.query("insert into posts (topicname, userinput) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
+  return db.query("insert into posts (topicname, topiccontent) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
 }
 
 function editTopicTitle(newTitle) {
@@ -30,7 +30,7 @@ function editTopicTitle(newTitle) {
 }
 
 function editTopicContent(editedContent) {
-  return db.query("update posts set userinput = '$1#'", [editedContent])
+  return db.query("update posts set topiccontent = '$1#'", [editedContent])
 }
 
 function deleteTopicById(id) {
@@ -40,11 +40,11 @@ function deleteTopicById(id) {
 
 // Comments Section Functions 
 function postComment(newPost) {
-  return db.query("insert into comments (userinput) values ('$1#') returning id", [newPost])
+  return db.query("insert into comments (topiccontent) values ('$1#') returning id", [newPost])
 }
 
 function editComment(editedPost) {
-  return db.query("update comments set userinput = '$1#'", [editedPost])
+  return db.query("update comments set topiccontent = '$1#'", [editedPost])
 }
 
 function deleteCommentById(id) {
