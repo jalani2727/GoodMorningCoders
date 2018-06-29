@@ -156,7 +156,6 @@ function createUsername (newName) {
    createPost,
    createComment,
    editComment,
-   postComment,
    deleteCommentById,
    editPostTitle,
    editPostContent,
