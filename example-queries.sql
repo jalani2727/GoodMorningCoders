@@ -33,17 +33,6 @@ select * from topics where TopicName ilike '%searchString%'
 
 
 
-
-
-
-
-
-
-
-
--- Figure out how to append the date that a profile is created to '<the literal date>'
-insert into userinfo 
-(datejoined) 
-values 
-(to_date('<the literal dare>', 'DD/MM/YYYY'));
+-- Figure out how to append the date that a profile is created to '<the literal date>' for a function that adds the dat the profile was created via github authentication
+insert into users (datejoined) values (to_date('<the literal dare>', 'DD/MM/YYYY'));
 

@@ -8,11 +8,6 @@
 
 
 -- Tables to store information populated by individual users about themselves and their account
-create table githubinfo (
-    -- uhhhhhhhhhhhhhh
-    -- put info from JSON data in here??
-    -- references this in the users table?
-)
 
 create table users (
     id serial primary key,
@@ -28,6 +23,8 @@ create table users (
     -- changing number. reference some sort of javascript that looks at topicids for a specific userid? (look up post count)
     postsbyuser integer NOT NULL
 );
+
+
 -- Categories Table (Ryan is building this)
 create table categories (
    id serial primary key,
@@ -56,7 +53,7 @@ create table posts(
     nickname text references users (nickname),
     numberofcomments integer references ???? (???), --(look up post count)
 
-    -- gonna wanna display the topic name on the createpost and displaypost page for the user
+    -- So the user knows what topic they're posting under 
     topicid integer references topics (topicid),
     topicname text references topics (topicname),
 );

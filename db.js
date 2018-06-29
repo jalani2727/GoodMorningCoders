@@ -73,6 +73,9 @@ function createBio (textInput) {
   return db.query("insert into users (bio) values ('$1#') returning id", [textInput])
 }
 
+function insertDateCreated(date) {
+  return db. query("insert into users (datejoined) values (to_date(('$1#', 'DD/MM/YYYY'))", [date]) //pretty sure this syntax is wrong. not sure if this would do anything in sql-talk. the date being passed in also needs to be configured to only be the current date
+}
 
 
 module.exports = {
@@ -86,5 +89,6 @@ module.exports = {
   createUsername,
   createNickname,
   createBio,
-  createHometown
+  createHometown,
+  inserstDateCreated
 }
