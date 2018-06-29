@@ -18,45 +18,8 @@ const db = pgp(cn);
 //  .then((data) => {console.log(data); })
 //  .catch((error) => {console.log(error); });
 
-
-
-// Topic Section functions
-function createTopic(newTopicTitle, newContent) {
-  return db.query("insert into posts (topicname, topiccontent) values ('$1#', '$2#')returning id" , [newTopicTitle, newContent] );
-}
-
-function editTopicTitle(newTitle) {
-  return db.query("update posts set topicname = '$1#'", [newTitle])
-}
-
-function editTopicContent(editedContent) {
-  return db.query("update posts set topiccontent = '$1#'", [editedContent])
-}
-
-function deleteTopicById(id) {
-  return db.query("delete from posts where id = $1", [id])
-}
-
-
-// Comments Section Functions 
-function postComment(newPost) {
-  return db.query("insert into comments (topiccontent) values ('$1#') returning id", [newPost])
-}
-
-function editComment(editedPost) {
-  return db.query("update comments set topiccontent = '$1#'", [editedPost])
-}
-
-function deleteCommentById(id) {
-  return db.query("delete from comments where id= '$1'", [id])
-}
-
-function searchTopic(searchString) {
-  return db.query("select * from posts where topicname ilike '%$1#%'", [searchString])
-}
-
-
 // Users Page Functions 
+// First three functions to have some interaction with GitHub JSON Data
 function createUsername (newName) {
   return db.query("insert into users (username) values ('$1#') returning id", [newName])
 }
@@ -69,6 +32,7 @@ function createHometown (city) {
   return db.query("insert into users (hometown) values ('$1#') returning id" [city])
 }
 
+
 function createBio (textInput) {
   return db.query("insert into users (bio) values ('$1#') returning id", [textInput])
 }
@@ -78,17 +42,78 @@ function insertDateCreated(date) {
 }
 
 
+
+// Developer/Admin Functions
+function moveTopicCategoryById(newId, topicName) {
+  return db.query("update topics set categoryid ='$1' where topicname is ='$2#'",[newId, topicName])
+}
+
+
+
+// Display Webpage Location Functions 
+// Use these to show category and topics names on pages based on category and topic id
+function getCategoryNameById(id) {
+  return db.any("select categoryname from categories where id = '$1'", [id]);
+}
+
+function getTopicNameById(id) {
+  return db.any("select topicname from topics where id = '$1'", [id]);
+}
+
+
+
+// Posts Page functions
+function createpost(newpostTitle, newContent) {
+  return db.query("insert into posts (postname, postcontent) values ('$1#', '$2#')returning id" , [newpostTitle, newContent] );
+}
+
+function editpostTitle(newTitle) {
+  return db.query("update posts set postname = '$1#'", [newTitle])
+}
+
+function editpostcontent(editedContent) {
+  return db.query("update posts set postcontent = '$1#'", [editedContent])
+}
+
+function deletepostById(id) {
+  return db.query("delete from posts where id = $1", [id])
+}
+
+
+
+// Comments Section Functions 
+function postComment(newPost) {
+  return db.query("insert into comments (postcontent) values ('$1#') returning id", [newPost])
+}
+
+function editComment(editedPost) {
+  return db.query("update comments set postcontent = '$1#'", [editedPost])
+}
+
+function deleteCommentById(id) {
+  return db.query("delete from comments where id= '$1'", [id])
+}
+
+function searchpost(searchString) {
+  return db.query("select * from posts where postname ilike '%$1#%'", [searchString])
+}
+
+
+
+
 module.exports = {
-  createTopic,
-  editTopicTitle,
-  editTopicContent,
-  deleteTopicById,
+  getCategoryNameById,
+  getTopicNameById,
+  createpost,
+  editpostTitle,
+  editpostcontent,
+  deletepostById,
+  searchpost,
   postComment,
   deleteCommentById,
-  searchTopic,
   createUsername,
   createNickname,
   createBio,
   createHometown,
-  inserstDateCreated
-}
+  insertDateCreated
+};

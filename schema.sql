@@ -14,10 +14,10 @@ create table users (
     userid integer NOT NULL,
     -- These three columns may be unecessary if we are pulling this info from gihub. Or haps the info from github will be pushed to a table and references in these columns
     bio text,
-    username character varying(100) NOT NULL,
-    hometown character varying(100) DEFAULT 'ATL',
+    username varchar(100) NOT NULL,
+    hometown varchar(100) DEFAULT 'ATL',
 
-    nickname character varying(100) NOT NULL,
+    nickname varchar(100) NOT NULL,
     -- These values shouldnt be regulated by users 
     datejoined date,
     -- changing number. reference some sort of javascript that looks at topicids for a specific userid? (look up post count)
@@ -25,9 +25,10 @@ create table users (
 );
 
 
--- Categories Table (Ryan is building this)
+-- Categories Table
 create table categories (
    id serial primary key,
+--    manually input the categories into the table
    categoryname varchar(50)
 );
 
@@ -35,18 +36,18 @@ create table categories (
 -- Table for the topics page to show the various topics made by individual users. Needs references to other tables for information
 create table topics (
     id serial primary key,
-    topicid integer,
-    userid integer references users (id),
-
-    -- We'll manually input the topics to post about like General Discussion posts, Collaboration posts, Questions posts
-    topicname character varying(500) NOT NULL,
-)
+    -- We'll manually input the topics into the table 
+    topicname varchar(50)
+    -- so the user know what category they're in
+    categoryid integer references categories (categoryname),
+);
 
 
 -- Table for the posts page following the page after a specific topic is seleced from the topics page
 create table posts(    
     id serial primary key,
-    topiccontent text
+    postcontent text
+    postname varchar(100)
 
     -- So that users know who made the post
     userid integer references users (id),
@@ -54,13 +55,13 @@ create table posts(
     numberofcomments integer references ???? (???), --(look up post count)
 
     -- So the user knows what category and topic they're posting under 
-    topicid integer references topics (topicid),
+    topicid integer references topics (id),
     topicname text references topics (topicname),
-    category
-
+    categoryname text references categories (categoryname)
 );
 
 
+-- For use on the post-specific post page
 create table comments (
     id serial primary key,
     userid integer references users (id),
