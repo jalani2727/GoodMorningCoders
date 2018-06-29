@@ -148,7 +148,6 @@ module.exports = {
  createPost,
  createComment,
  editComment,
- postComment,
  deleteCommentById,
  editPostTitle,
  editPostContent
