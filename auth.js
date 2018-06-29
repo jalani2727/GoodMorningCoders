@@ -27,7 +27,7 @@ const setupAuth = (app) => {
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "http://localhost:5000/github/auth"
   }, (accessToken, refreshToken, profile, done) => {
-
+    console.log(profile);
     return done(null, profile);
     // // TODO: replace this with code that finds the user
     // // in the database.
