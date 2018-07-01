@@ -33,11 +33,7 @@ const setupAuth = (app) => {
     // // in the database.
     // let theUser = users.find(u => u.id === profile.id);
 
-    // if (theUser) {
-    //   return done(null, user);
-    // } else {
-    //   return done({ message: 'That totally did not work'}, null);
-    // }
+    //let userName = req.session.passport.user.profile (you left off here last night...)
 
   }));
 

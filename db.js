@@ -13,16 +13,36 @@ const db = pgp(cn);
 
 
 
-//Site Functions
+//Category Functions
 //Get All Categories
-function getCategories() {
-    return db.any('select * from categories');
+function getAllCategories() {
+    return db.any("select * from categories");
 }
 
 //Get All Categories
 function getOneCategory(id) {
     return db.oneOrNone("select * from categories where id=$1", [id]);
 }
+
+
+
+
+//Topic Functions
+//Get All Topics
+function getAllTopics() {
+    return db.any("select * from topics");
+}
+
+//Get One Topic
+function getOneTopic(id) {
+    return db.oneOrNone("select * from topics where id=$1", [id]);
+}
+
+//Add Topic
+function addTopic(id, topictitle, topiccontent) {
+    return db.one("insert into topics (topictitle, topiccontent) values ('$1#', '$2#') returning id", [id, topictitle, topiccontent]);
+}
+
 
 
 
@@ -138,27 +158,30 @@ function createUsername (newName) {
   
   
   
-  module.exports = {
-   createUsername,
-   createNickname,
-   createHometown,
-   createBio,
-   insertDateCreated,
-   moveTopicCategoryById,
-   movePostTopicById,
-   getUsernameByUserId,
-   getCategoryNameById,
-   getTopicNameById,
-   getPostTitleById,
-   getPostContentById,
-   getCommentsById,
-   deletePostById,
-   createPost,
-   createComment,
-   editComment,
-   deleteCommentById,
-   editPostTitle,
-   editPostContent,
-   getCategories,
-   getOneCategory
-  };
+module.exports = {
+    createUsername,
+    createNickname,
+    createHometown,
+    createBio,
+    insertDateCreated,
+    moveTopicCategoryById,
+    movePostTopicById,
+    getUsernameByUserId,
+    getCategoryNameById,
+    getTopicNameById,
+    getPostTitleById,
+    getPostContentById,
+    getCommentsById,
+    deletePostById,
+    createPost,
+    createComment,
+    editComment,
+    deleteCommentById,
+    editPostTitle,
+    editPostContent,
+    getAllCategories,
+    getOneCategory,
+    getAllTopics,
+    getOneTopic,
+    addTopic
+};

@@ -1,0 +1,48 @@
+<header class="topicsHeader">
+
+    <!--Topics Language Title-->
+    <div class="topicsHeaderLeft">
+
+        {{#with category}}
+
+            <span>{{categoryname}} Topics</span>
+        
+        {{/with}}
+
+    </div>
+
+</header>
+
+
+<center>
+
+    <!--Create New Topic Form-->
+    <div>
+
+        <form action="/new-topic" method="POST">
+
+            <input type="hidden" name="id" value="{{id}}">
+
+            <br>
+
+            <input type="text" name="topictitle" value="{{topictitle}}">
+
+            <br>
+
+            <input type="text" name="topiccontent" value="{{topiccontent}}">
+
+            <br>
+            <br>
+
+            <input type="submit">
+            <input type="reset">
+
+        </form>
+
+        <br>
+
+        <a href="/"> Return Home</a>
+
+    </div>
+
+</center>

@@ -104,8 +104,9 @@ app.get("/", function(request, response) {
 
 
     //Set Page Render
-    siteDB.getCategories()
-    .then((data) => {
+    //Get All Coding Categories
+    siteDB.getAllCategories()
+    .then(function(data) {
         console.log(data);
         response.render("home", {
             layout: "homepage",
@@ -115,51 +116,56 @@ app.get("/", function(request, response) {
             isLoggedIn: request.isAuthenticated()
         });
     })
-    .catch((error) => {console.log(error)});
+    .catch(function(error) {console.log(error)});
 });
 
 
-
+siteDB.getAllTopics()
 
 //Topics Page
 app.get("/:id", function(request, response) {
-    siteDB.getOneCategory(request.params.id)
-    .then((data) => {
+    //Check Category
+    Promise.all([siteDB.getOneCategory(request.params.id), siteDB.getAllTopics()])
+    .then(function(data) {
         console.log(data);
         response.render("topics", {       
             layout: "topicspage",
-            category: data,
+            category: data[0],
+            topics: data[1],
             isLoggedIn: request.isAuthenticated()
+            
         });
     })
-    .catch((error) => {console.log(error)});
+    .catch(function(error) {console.log(error)});
 });
 
 
 //Create New Topic
-app.get("/:id/new-topic", (request, response) => {
-    todoList.getOneCategory(request.params.id)
-    .then((data) => {
-        response.render("topics", data);
+app.get("/:id/new-topic", function(request, response) {
+    //Check Category
+    siteDB.getOneCategory(request.params.id)
+    .then(function(data) {
+        response.render("newtopic", {
+            layout: "newtopicpage",
+            category: data,
+            isLoggedIn: request.isAuthenticated()
+        });
     })
-    .catch((error) => {console.log(error)});
+    .catch(function(error) {console.log(error)});
 });
 
-app.post("/new-topic", (request, response) => {});
+app.post("/new-topic", function(request, response) {
+    console.log(request.body);
+    //Check Category
+    siteDB.getOneCategory(request.params.id)
 
-
-
-
-//Topics Page
-// app.get("/topics/:id", function(request, response) {
-//     siteDB.getCategories(request.params.id);
-//         .then((category) => {
-//             console.log(category);
-//             response.render("categories", category {});
-
-//         })
-//         .catch((error) => {console.log(error)});
-// });
+    //Add Topic and Content to Database
+    siteDB.addTopic(request.body.topictitle, request.body.topiccontent)
+    .then(function(data) {
+        response.redirect(`/${data.id}`);
+    })
+    .catch(function(error) {console.log(error)});
+});
 
 
 

@@ -20,3 +20,31 @@
     </div>
 
 </header>
+
+
+
+
+<!--Topics-->
+<div class="topicsListWrapper">
+
+    <!--Topics Selection-->
+    {{#each topics}}
+    <div class="topicsList">
+
+        <div class="topicsListRow">
+
+            <a href="/{{id}}">{{topictitle}}</a>
+
+            <br>
+
+            <span>Created By:</span>
+
+            <br>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>

@@ -1,8 +1,10 @@
+--Category Data--
 create table categories (
     id serial primary key,
     categoryname varchar(50)
 );
 
+--Implement All Coding Languanges--
 insert into categories (categoryname)
 values 
 ('HTML'),
@@ -19,6 +21,19 @@ values
 ('Java'),
 ('Ruby'),
 ('Perl')
+
+
+
+
+--Topics Data--
+create table topics (
+    id serial primary key,
+    topictitle varchar(300),
+    topiccontent varchar(8000)
+);
+
+
+
 
 create table comments (
     id serial primary key,
