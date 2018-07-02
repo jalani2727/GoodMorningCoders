@@ -69,7 +69,9 @@ function editUserInfo(alias,bio){
   }
 
   function getUserByGitId (userid) {
-    return db.oneOrNone("select * from users where userid = $1;", [userid]);
+    console.log(userid)
+    console.log("AJHDIHGFOIAGOS")
+    return db.oneOrNone("select * from users where github_id = $1;", [userid]);
   }
   
   function getCategoryNameById(id) {

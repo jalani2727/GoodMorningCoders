@@ -36,7 +36,7 @@ create table topics (
 -- Tables to store information populated by individual users about themselves and their account
 
 create table users (
-    userid serial primary key
+    userid serial primary key,
     alias varchar(30) NOT NULL,
     github_id integer NOT NULL,
     github_avatar_url varchar(200) NOT NULL,

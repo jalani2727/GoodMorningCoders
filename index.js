@@ -126,18 +126,22 @@ app.get("/", function(request, response) {
 // Go to userprofile page 
 
 app.get("/userprofile", ensureAuthenticated, (request, response) => {
+    console.log(request.session)
     var userSession = request.session.passport.user
-    siteDB.getUserByGitId(Number(userSession.id))
+    siteDB.getUserByGitId(Number(userSession))
     .then((data) => {
+        console.log(data)
         if(data){
-            response.redirect("/");
-        } else {
             response.render("profile", {
-                layout: "profilepage",
-                alias: userSession.username,
-                githubavatar: userSession._json.avatar_url,
-                gitURL: userSession.profileUrl
+                data: data,
+                layout: "profilepage"
+            //     alias: data.alias,
+            //     githubavatar: data.github_avatar_url,
+            //     gitURL: data.github_url
             });
+           
+        } else {
+            response.redirect("/");
         }})
             .catch((error) => { 
                 console.log(error); 
