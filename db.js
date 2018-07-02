@@ -15,7 +15,7 @@ const db = pgp(cn);
 
 //Site Functions
 //Get All Categories
-function getCategories() {
+function getAllCategories() {
     return db.any('select * from categories');
 }
 
@@ -24,47 +24,52 @@ function getOneCategory(id) {
     return db.oneOrNone("select * from categories where id=$1", [id]);
 }
 
+//Topic Functions
+//Get All Topics
+function getAllTopics(id) {
+  console.log(id)
+  return db.any("select * from topics where topiccategory=$1", [id]);
+}
+
+//Get One Topic
+function getOneTopic(id) {
+  return db.oneOrNone("select * from topics where id=$1", [id]);
+}
+
+//Add Topic
+function addTopic(topictitle, topiccontent, topiccategory) {
+  return db.one("insert into topics (topictitle, topiccontent, topiccategory) values ('$1#', '$2#', '$3#') returning id", [topictitle, topiccontent, topiccategory]);
+}
+// Delete Topic
+function deleteTopic(topictitle) {
+  return db.query("delete from topics where topictitle = '$1#'", [topictitle])
+}
+
 
 
 // Users Page Functions 
-// First three functions to have some interaction with GitHub JSON Data
-function createUsername (newName) {
-    return db.query("insert into users (username) values ('$1#') returning id", [newName])
-  }
-  
-  function createNickname (newName) {
-    return db.query("insert into users (nickname) values ('$1#') returning id", [newName])
-  }
-  
-  function createHometown (city) {
-    return db.query("insert into users (hometown) values ('$1#') returning id" [city])
-  }
-  
-  
-  function createBio (textInput) {
-    return db.query("insert into users (bio) values ('$1#') returning id", [textInput])
-  }
-  
-  function insertDateCreated(date) {
-    return db. query("insert into users (datejoined) values (to_date(('$1#', 'DD/MM/YYYY'))", [date]) //pretty sure this syntax is wrong. not sure if this would do anything in sql-talk. the date being passed in also needs to be configured to only be the current date
-  }
-  
-  
-  
-  // Developer/Admin Functions
-  function moveTopicCategoryById(newId, topicName) {
-    return db.query("update topics set categoryid ='$1' where topicname is ='$2#'",[newId, topicName])
-  }
-  
-  function movePostTopicById (newId, postTitle) {
-    return db.query ("update posts set topic if = '$1' where posttitle is ='$2#'", [newId, postTitle] )
-  }
+
+function addUser(alias,github_id,github_avatar_url,github_url,join_date,bio)
+{console.log("about to add user")
+  return db.query("insert into users (alias, github_id, github_avatar_url, github_url, join_date, bio) VALUES ('$1#', $2, '$3#', '$4#', '$5#', '$6#') returning userid",
+      [alias,github_id,github_avatar_url,github_url,join_date,bio])
+    
+      
+}
+
+function editUserInfo(alias,bio){
+  return db.query("update users set bio= $1, alias= $2 ")
+}
   
   
   // Get-Functions
   // Get-Functions for use on all pages
-  function getUsernameByUserId (userid) {
-    return db.query("select username from column where userid = '$1'", [userid])
+  function getGithubData() {
+    return db.query("select * from users")
+  }
+
+  function getUserByGitId (userid) {
+    return db.oneOrNone("select * from users where userid = $1;", [userid]);
   }
   
   function getCategoryNameById(id) {
@@ -75,40 +80,14 @@ function createUsername (newName) {
     return db.any("select topicname from topics where id = '$1'", [id]);
   }
   
-  function getPostTitleById(id) {
-    return db.any("select posttitle from posts where id = '$1'", [id]);
-  }
-  
-  function getPostContentById(id) {
-    return db.any("select postcontent from posts where id = '$1'", [id]);
-  }
-  
-  
+
   function getCommentsById(id) {
     return db.any("select commentcontent from comments where id = '$1'", [id]);
   }
   
   
   
-  
-  
-  // Category-Specific Topics Page 
-  // Run get functions to display relevant names
-  // I beleive a function to show the number of posts per topic goes here 
-  
-  
-  
-  // Topic-Specific Posts Page
-  // Really just running Get-Functions and using the post count thing i havent looked up yet 
-  
-  function deletePostById(id) {
-    return db.query("delete from posts where id = $1", [id])
-  }
-  
-  // Create-Posts Page 
-  function createPost(newpostTitle, newContent) {
-    return db.query("insert into posts (posttitle, postcontent) values ('$1#', '$2#')returning id" , [newpostTitle, newContent] );
-  }
+
   
   // Post Display Page 
   // use the get functions to show the post title and contents
@@ -139,26 +118,23 @@ function createUsername (newName) {
   
   
   module.exports = {
-   createUsername,
-   createNickname,
-   createHometown,
-   createBio,
-   insertDateCreated,
-   moveTopicCategoryById,
-   movePostTopicById,
-   getUsernameByUserId,
-   getCategoryNameById,
-   getTopicNameById,
-   getPostTitleById,
-   getPostContentById,
-   getCommentsById,
-   deletePostById,
-   createPost,
-   createComment,
-   editComment,
-   deleteCommentById,
-   editPostTitle,
-   editPostContent,
-   getCategories,
-   getOneCategory
+    getAllCategories,
+    getOneCategory,
+    getAllTopics,
+    getOneTopic,
+    addTopic,
+    deleteTopic,
+    addUser,
+    editUserInfo,
+    getGithubData,
+    getUserByGitId,
+    getCategoryNameById,
+    getTopicNameById,
+    getCommentsById,
+    editComment,
+    createComment,
+    deleteCommentById,
+    editPostTitle,
+    editPostContent
+
   };
