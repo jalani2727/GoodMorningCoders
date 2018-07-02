@@ -269,6 +269,10 @@ body {
     justify-content: flex-end;
 }
 
+.topicsHeaderRightWrapper {
+    display: block;
+}
+
 /*Topics Logo*/
 .topicsHeaderLeft span {
     font-family: "newscycle";
@@ -350,4 +354,20 @@ body {
     -webkit-box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.1);
     -moz-box-shadow:    1px 2px 3px 2px rgba(0, 0, 0, 0.1);
     box-shadow:         1px 2px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.topicForm {
+    text-align: left;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.topicForm span {
+    font-family: "newscycle";
+    font-size: 18px;
+
+    color: rgb(0, 0, 0);
 }

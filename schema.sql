@@ -29,7 +29,8 @@ values
 create table topics (
     id serial primary key,
     topictitle varchar(300),
-    topiccontent varchar(8000)
+    topiccontent varchar(8000),
+    topiccategory integer references categories (id)
 );
 
 

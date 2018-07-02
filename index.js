@@ -28,9 +28,6 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-//Weather API
-weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6"
-
 //Site Database
 const siteDB = require("./db");
 
@@ -72,6 +69,9 @@ var nightBG = [
     "/images/backgrounds/night3.jpeg",
     "/images/backgrounds/night4.jpg"
 ]
+
+
+//http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6
 
 
 
@@ -120,12 +120,12 @@ app.get("/", function(request, response) {
 });
 
 
-siteDB.getAllTopics()
+
 
 //Topics Page
-app.get("/:id", function(request, response) {
-    //Check Category
-    Promise.all([siteDB.getOneCategory(request.params.id), siteDB.getAllTopics()])
+app.get("/category/:id", function(request, response) {
+    //Check Category and Existing Topics
+    Promise.all([siteDB.getOneCategory(request.params.id), siteDB.getAllTopics(request.params.id)])
     .then(function(data) {
         console.log(data);
         response.render("topics", {       
@@ -141,10 +141,11 @@ app.get("/:id", function(request, response) {
 
 
 //Create New Topic
-app.get("/:id/new-topic", function(request, response) {
+app.get("/category/:id/new-topic", function(request, response) {
     //Check Category
     siteDB.getOneCategory(request.params.id)
     .then(function(data) {
+        console.log(data.id)
         response.render("newtopic", {
             layout: "newtopicpage",
             category: data,
@@ -154,15 +155,16 @@ app.get("/:id/new-topic", function(request, response) {
     .catch(function(error) {console.log(error)});
 });
 
-app.post("/new-topic", function(request, response) {
+app.post("/category/:id/new-topic", function(request, response) {
     console.log(request.body);
-    //Check Category
-    siteDB.getOneCategory(request.params.id)
-
     //Add Topic and Content to Database
-    siteDB.addTopic(request.body.topictitle, request.body.topiccontent)
+    Promise.all([
+        siteDB.getOneCategory(request.params.id),
+        siteDB.addTopic(request.body.topictitle, request.body.topiccontent, request.params.id)
+    ])
     .then(function(data) {
-        response.redirect(`/${data.id}`);
+        response.redirect(`/category/${data[0].id}`);
+        console.log(data);
     })
     .catch(function(error) {console.log(error)});
 });
@@ -170,6 +172,6 @@ app.post("/new-topic", function(request, response) {
 
 
 //Create Server
-app.listen(5000, () => {
+app.listen(5000, function() {
     console.log("Server: http://localhost:5000");
 });

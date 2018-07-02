@@ -15,7 +15,7 @@
     <!--Create New Post-->
     <div class="topicsHeaderRight">
 
-        <a href="/{{id}}/new-topic">Create New Topic</a>
+        <a href="/category/{{category.id}}/new-topic">Create New Topic</a>
 
     </div>
 
@@ -28,7 +28,9 @@
 <div class="topicsListWrapper">
 
     <!--Topics Selection-->
+    {{#if topics}}
     {{#each topics}}
+    
     <div class="topicsList">
 
         <div class="topicsListRow">
@@ -46,5 +48,6 @@
     </div>
 
     {{/each}}
+    {{/if}}
 
 </div>

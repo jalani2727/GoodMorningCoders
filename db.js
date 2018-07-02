@@ -29,8 +29,9 @@ function getOneCategory(id) {
 
 //Topic Functions
 //Get All Topics
-function getAllTopics() {
-    return db.any("select * from topics");
+function getAllTopics(id) {
+    console.log(id)
+    return db.any("select * from topics where topiccategory=$1", [id]);
 }
 
 //Get One Topic
@@ -39,9 +40,14 @@ function getOneTopic(id) {
 }
 
 //Add Topic
-function addTopic(id, topictitle, topiccontent) {
-    return db.one("insert into topics (topictitle, topiccontent) values ('$1#', '$2#') returning id", [id, topictitle, topiccontent]);
+function addTopic(topictitle, topiccontent, topiccategory) {
+    return db.one("insert into topics (topictitle, topiccontent, topiccategory) values ('$1#', '$2#', '$3#') returning id", [topictitle, topiccontent, topiccategory]);
 }
+
+//Join Categories and Topics
+//function uniqueTopics(id) {
+//    return db.one("select from categories join topics categories.id = topics.id", [id]);
+//}
 
 
 

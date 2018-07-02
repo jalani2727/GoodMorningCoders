@@ -11,25 +11,46 @@
 
     </div>
 
+    <!--Return Links-->
+    <div class="topicsHeaderRight">
+
+        <div class="topicsHeaderRightWrapper">
+
+            <a href="/">Return Home</a>
+
+            <a href="/category/{{category.id}}">Return to Topics</a>
+
+        </div>
+
+    </div>
+
 </header>
 
 
 <center>
 
     <!--Create New Topic Form-->
-    <div>
+    <div class="topicForm">
 
-        <form action="/new-topic" method="POST">
+        <form action="/category/{{category.id}}/new-topic" method="POST">
 
-            <input type="hidden" name="id" value="{{id}}">
-
-            <br>
-
-            <input type="text" name="topictitle" value="{{topictitle}}">
+            <input type="hidden" name="id" value="{{category.id}}">
 
             <br>
 
-            <input type="text" name="topiccontent" value="{{topiccontent}}">
+            <span>Topic Title</span>
+
+            <br>
+
+            <input type="text" name="topictitle">
+
+            <br>
+
+            <span>Topic Comment</span>
+
+            <br>
+
+            <input type="text" name="topiccontent">
 
             <br>
             <br>
@@ -38,10 +59,6 @@
             <input type="reset">
 
         </form>
-
-        <br>
-
-        <a href="/"> Return Home</a>
 
     </div>
 
