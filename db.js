@@ -128,7 +128,6 @@ module.exports = {
     addUser,
     getUserByGitId,
     addComment,
-    getAllComments
     getAllComments,
     getWeather,
     getWeatherIcon
