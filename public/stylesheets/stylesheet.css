@@ -2,8 +2,9 @@
 body {
     overflow-x: hidden;
 
-    display: flex;
     min-height: 100vh;
+
+    display: flex;
     flex-direction: column;
 }
 
@@ -61,7 +62,7 @@ body {
 
 /*Right Portion*/
 .customHeaderRight {
-    width: 20%;
+    width: 28%;
 
     display: flex;
     flex-direction: row;
@@ -120,6 +121,24 @@ body {
     display: inline-block;
 }
 
+.navRight img {
+    height: 80px;
+    width: 80px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.navRight span {
+    font-family: "newscycle";
+    font-size: 20px;
+
+    padding: 8px;
+
+    color: rgb(255,255,255);
+}
+
 /*Sun Logo*/
 .customHeaderMiddle img {
     height: 200px;
@@ -152,7 +171,7 @@ body {
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .contentBoxContainer {
@@ -268,6 +287,10 @@ body {
     justify-content: flex-end;
 }
 
+.topicsHeaderRightWrapper {
+    display: block;
+}
+
 /*Topics Logo*/
 .topicsHeaderLeft span {
     font-family: "newscycle";
@@ -289,4 +312,256 @@ body {
     
     text-decoration: none;
     list-style-type: none;
+}
+
+/*Topics List*/
+.topicsListWrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.topicsList {
+    width: 70%;
+
+    padding: 18px;
+
+    flex-wrap: wrap;
+}
+
+.topicsList a {
+    font-family: "newscycle";
+    font-size: 26px;
+    
+    color: rgb(0, 107, 247);
+
+    padding: 18px;
+    
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.topicsListWrapper a:hover {
+    color: rgb(96, 158, 240);
+
+    transition: all 0.4s ease-in-out;
+}
+
+.topicsListWrapper span {
+    font-family: "newscycle";
+    font-size: 18px;
+
+    color: rgb(112, 112, 112);
+
+    padding: 18px;
+}
+.topicsListRow {
+    background-color: rgb(243, 243, 243);
+
+    height: 64px;
+    width: 100%;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    1px 2px 3px 2px rgba(0, 0, 0, 0.1);
+    box-shadow:         1px 2px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.topicForm {
+    text-align: left;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.topicForm span {
+    font-family: "newscycle";
+    font-size: 26px;
+
+    color: rgb(0, 0, 0);
+}
+
+.topicForm #commentBox {
+    height: 200px;
+}
+
+.topicMain {
+    font-family: "newscycle";
+    font-size: 16px;
+
+    height: 100%;
+    width: 70%;
+
+    min-height: 30vh;
+
+    text-align: left;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.topicMainTitle span {
+    font-family: "newscycle";
+    font-size: 40px;
+
+    color: rgb(0, 0, 0);
+
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.topicMainTitle #title {
+    font-family: "newscycle";
+    font-size: 40px;
+
+    color: rgb(112, 112, 112);
+
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.topicMainContent {
+    background-color: rgba(0, 0, 0, 0.1);
+
+    font-family: "newscycle";
+    font-size: 24px;
+
+    height: 70%;
+    width: 70%;
+
+    padding: 14px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+
+
+/*Profile Design*/
+.profileWrapper {
+    height: 100%;
+    width: 100%;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.profileCard {
+    background-color: rgba(0, 0, 0, 0.1);
+
+    font-family: "newscycle";
+    font-size: 20px;
+
+    color: rgb(112, 112, 112);
+
+    height: 70%;
+    width: 200px;
+
+    min-height: 30vh;
+
+    padding: 14px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow:    0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+    box-shadow:         0px 2px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.profileCard img {
+    height: 200px;
+    width: 200px;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.profileCard #profileBlackText {
+    color: rgb(0, 0, 0);
+}
+
+.profileCard a {
+    font-family: "newscycle";
+    font-size: 20px;
+
+    color: rgb(0, 135, 245);
+
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+
+
+/*Comment Section*/
+.commentsWrapper {
+    width: 100%;
+
+    min-height: 20vh;
+
+    text-align: left;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.commentsBody {
+    width: 100%;
+
+    text-align: left;
+}
+
+.commentsTitle span {
+    font-family: "newscycle";
+    font-size: 60px;
+
+    color: rgb(0, 0, 0);
+
+    padding: 20px;
+
+    text-align: left;
+}
+
+.commentBox {
+    background-color: rgba(0, 0, 0, 0.1);
+
+    font-family: "newscycle";
+    font-size: 20px;
+
+    height: 70%;
+    width: 70%;
+
+    padding: 14px;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#commentHR {
+    width: 70%;
+
+    text-align: left;
 }

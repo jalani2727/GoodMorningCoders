@@ -1,10 +1,11 @@
 {
-  "name": "GroupFullStack",
+  "name": "GoodMorningCoders",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --ignore sessions index.js",
+    "resetdb": "dropdb Good-morning-coders; createdb Good-morning-coders; psql -d Good-morning-coders -f schema.sql;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

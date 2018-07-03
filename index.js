@@ -74,6 +74,29 @@ var nightBG = [
 //http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6
 
 
+<<<<<<< HEAD
+=======
+
+
+//User Profile Page
+app.get("/userprofile", ensureAuthenticated, function(request, response) {
+var userSession = request.session.passport.user;
+siteDB.getUserByGitId(Number(userSession))
+.then(function(data) {
+    if (data) {
+        response.render("profile", {
+            data: data,
+            layout: "profilepage"
+        });
+    } else {
+        response.redirect("/login");
+    }})
+        .catch(function(error) { 
+            console.log(error); 
+        });
+});
+
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
 
 
 //Homepage
@@ -102,17 +125,27 @@ app.get("/", function(request, response) {
         homeBG = nightBG[Math.floor(Math.random() * nightBG.length)];
     }
 
-
+    
     //Set Page Render
     //Get All Coding Categories
+<<<<<<< HEAD
     siteDB.getAllCategories()
     .then(function(data) {
         console.log(data);
+=======
+    var userSession = request.session.passport.user;
+    Promise.all([
+        siteDB.getUserByGitId(Number(userSession)),
+        siteDB.getAllCategories()
+    ])
+    .then(function(data) {
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
         response.render("home", {
             layout: "homepage",
             title: "Good Morning Coders",
             homeBG: homeBG,
-            category: data,
+            category: data[1],
+            profile: data[0],
             isLoggedIn: request.isAuthenticated()
         });
     })
@@ -122,6 +155,7 @@ app.get("/", function(request, response) {
 
 
 
+<<<<<<< HEAD
 // Go to userprofile page 
 
 app.get("/userprofile", ensureAuthenticated, (request, response) => {
@@ -155,10 +189,27 @@ app.get("/category/:id", function(request, response) {
     Promise.all([siteDB.getOneCategory(request.params.id), siteDB.getAllTopics(request.params.id)])
     .then(function(data) {
         console.log(data);
+=======
+//Topics Page
+app.get("/category/:id", function(request, response) {
+    //Check Category and Existing Topics
+    var userSession = request.session.passport.user;
+    Promise.all([
+        siteDB.getOneCategory(request.params.id),
+        siteDB.getAllTopics(request.params.id),
+        siteDB.getUserByGitId(Number(userSession)),
+        siteDB.getTopicAuthor(request.params.id)
+    ])
+    .then(function(data) {
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
         response.render("topics", {       
             layout: "topicspage",
             category: data[0],
             topics: data[1],
+<<<<<<< HEAD
+=======
+            topicauthor: data[2],
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
             isLoggedIn: request.isAuthenticated()
             
         });
@@ -169,6 +220,7 @@ app.get("/category/:id", function(request, response) {
 
 //Create New Topic
 app.get("/category/:id/new-topic", function(request, response) {
+<<<<<<< HEAD
     //Check Category
     siteDB.getOneCategory(request.params.id)
     .then(function(data) {
@@ -176,6 +228,20 @@ app.get("/category/:id/new-topic", function(request, response) {
         response.render("newtopic", {
             layout: "newtopicpage",
             category: data,
+=======
+    //Check Category and User topicauthor
+    var userSession = request.session.passport.user;
+    Promise.all([
+    siteDB.getOneCategory(request.params.id),
+    siteDB.getUserByGitId(Number(userSession)),
+    siteDB.getTopicAuthor(request.body.userid)
+    ])
+    .then(function(data) {
+        response.render("newtopic", {
+            layout: "newtopicpage",
+            category: data[0],
+            topic: data[1],
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
             isLoggedIn: request.isAuthenticated()
         });
     })
@@ -183,6 +249,7 @@ app.get("/category/:id/new-topic", function(request, response) {
 });
 
 app.post("/category/:id/new-topic", function(request, response) {
+<<<<<<< HEAD
     console.log(request.body);
     //Add Topic and Content to Database
     Promise.all([
@@ -195,6 +262,60 @@ app.post("/category/:id/new-topic", function(request, response) {
     })
     .catch(function(error) {console.log(error)});
 });
+=======
+    //Add Topic Title and Content to Database
+    Promise.all([
+        siteDB.getOneCategory(request.params.id),
+        siteDB.addTopic(request.body.topictitle, request.body.topiccontent, request.params.id, request.body.topicauthor)
+    ])
+    .then(function(data) {
+        response.redirect(`/category/${data[0].id}`);
+    })
+    .catch(function(error) {console.log(error)});
+});
+
+
+
+
+//Topic Details
+app.get("/category/:id/topic/:topicid", function(request, response) {
+    //Check Category and Topic Information
+    var userSession = request.session.passport.user;
+    Promise.all([
+    siteDB.getOneCategory(request.params.id),
+    siteDB.getOneTopic(request.params.topicid),
+    siteDB.getUserByGitId(Number(userSession)),
+    siteDB.getAllComments(request.params.topicid)
+    ])
+    .then(function(data) {
+        response.render("postedtopic", {
+            layout: "topicspage",
+            category: data[0],
+            topic: data[1],
+            comments: data[3],
+            topicauthor: data[2],
+            commentauthor: data[2],
+            isLoggedIn: request.isAuthenticated()
+        });
+    })
+    .catch(function(error) {console.log(error)});
+});
+
+app.post("/category/:id/topic/:topicid", function(request, response) {
+    //Check Category and Topic Information
+    Promise.all([
+    siteDB.getOneCategory(request.params.id),
+    siteDB.getOneTopic(request.params.topicid),
+    siteDB.addComment(request.params.topicid, request.body.userinput, request.body.commentauthor)
+    ])
+    .then(function(data) {
+        console.log(data);
+        response.redirect(`/category/${data[0].id}/topic/${data[1].id}`);
+    })
+    .catch(function(error) {console.log(error)});
+});
+
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
 
 
 

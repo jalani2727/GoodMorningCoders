@@ -1,0 +1,123 @@
+<header class="topicsHeader">
+
+    <!--Topics Language Title-->
+    <div class="topicsHeaderLeft">
+
+
+            <span>{{category.categoryname}} Topics</span>
+
+    </div>
+
+    
+    <!--Return Links-->
+    <div class="topicsHeaderRight">
+
+        <div class="topicsHeaderRightWrapper">
+
+            <a href="/">Return Home</a>
+
+            <a href="/category/{{category.id}}">Return to Topics</a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<div class="topicMain">
+
+    <div class="topicMainTitle">
+
+        <span>Topic Title<div id="title">{{topic.topictitle}}</div></span>
+
+    </div>
+
+    <div class="topicMainContent">
+
+        <span>{{topic.topiccontent}}</span>
+
+        <br>
+        <br>
+
+        <span>Posted By: {{topicauthor.alias}}</span>
+
+    </div>
+
+
+    <center>
+
+    {{#if isLoggedIn}}
+
+    <div class="commentsTitle">
+
+        <span>Post A Comment</span>
+
+    </div>
+
+    <!--Post New Topic-->
+    <div class="topicForm">
+
+        <form action="/category/{{category.id}}/topic/{{topic.id}}" method="POST">
+
+            <input type="hidden" name="id" value="{{category.id}}">
+
+            <input type="hidden" name="commentauthor" value="{{commentauthor.userid}}">
+
+            <br>
+
+            <input id="commentBox" type="text" name="userinput" size="60px">
+
+            <br>
+            <br>
+
+            <input type="submit">
+            <input type="reset">
+
+        </form>
+
+    </div>
+
+    {{/if}}
+
+
+            <br>
+            <br>
+
+
+        <!--Comments-->
+        <div class="commentsBody">
+
+            <div class="commentsTitle">
+
+                <span>All Comments</span>
+
+            </div>
+
+        </div>
+
+
+        {{#each comments}}
+
+        <div class="commentsWrapper">
+
+            <div class="commentBox">
+
+                <span>{{userinput}}</span>
+
+                <br>
+                <br>
+
+                <span>Posted By: {{../commentauthor.alias}}</span>
+
+            </div>
+
+            <hr id="commentHR">
+
+        </div>
+
+        {{/each}}
+
+    </center>
+
+</div>

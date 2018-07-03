@@ -3,20 +3,48 @@
     <!--Topics Language Title-->
     <div class="topicsHeaderLeft">
 
-        {{#with category}}
-
-            <span>{{categoryname}} Topics</span>
-        
-        {{/with}}
+            <span>{{category.categoryname}} Topics</span>
 
     </div>
 
     
-    <!--Create New Post-->
+    <!--Return Home-->
     <div class="topicsHeaderRight">
 
-        <a href="/{{id}}/new-topic">Create New Topic</a>
+        <a href="/">Return Home</a>
+
+    <!--Create New Post-->
+        <a href="/category/{{category.id}}/new-topic">Create New Topic</a>
 
     </div>
 
 </header>
+
+
+
+
+<!--Topics-->
+<div class="topicsListWrapper">
+
+    <!--Topics Selection-->
+    {{#each topics}}
+    
+    <div class="topicsList">
+
+        <div class="topicsListRow">
+
+            <a href="/category/{{../category.id}}/topic/{{id}}">{{topictitle}}</a>
+
+            <br>
+
+            <span>Created By: {{../topicauthor.alias}}</span>
+
+            <br>
+
+        </div>
+
+    </div>
+
+    {{/each}}
+
+</div>

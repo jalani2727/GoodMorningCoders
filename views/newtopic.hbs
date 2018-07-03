@@ -1,14 +1,9 @@
-
 <header class="topicsHeader">
 
     <!--Topics Language Title-->
     <div class="topicsHeaderLeft">
 
-        {{#with category}}
-
-            <span>{{categoryname}} Topics</span>
-        
-        {{/with}}
+            <span>{{category.categoryname}} Topics</span>
 
     </div>
 
@@ -37,13 +32,15 @@
 
             <input type="hidden" name="id" value="{{category.id}}">
 
+            <input type="hidden" name="topicauthor" value="{{topic.userid}}">
+
             <br>
 
             <span>Topic Title</span>
 
             <br>
 
-            <input type="text" name="topictitle">
+            <input type="text" name="topictitle" size="40px">
 
             <br>
 
@@ -51,7 +48,7 @@
 
             <br>
 
-            <input type="text" name="topiccontent">
+            <input id="commentBox" type="text" name="topiccontent" size="40px">
 
             <br>
             <br>

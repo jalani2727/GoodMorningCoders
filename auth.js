@@ -36,6 +36,7 @@ const setupAuth = (app) => {
         return done(null, profile);
       } else {
         console.log(profile)
+<<<<<<< HEAD
         console.log(profile._json.name)
         console.log(profile.id)
         console.log(profile._json.avatar_url)
@@ -43,6 +44,9 @@ const setupAuth = (app) => {
         console.log(profile._json.updated_at)
         console.log(profile._json.bio)
         siteDB.addUser(profile._json.name, profile.id, profile._json.avatar_url, profile._json.url, profile._json.updated_at,profile._json.bio)
+=======
+        siteDB.addUser(profile._json.name, profile.id, profile._json.avatar_url, profile._json.url, profile._json.created_at, profile._json.bio, profile._json.location, profile._json.html_url)
+>>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
         .then(() =>{
           console.log("added the user");
           return done(null, profile);
@@ -120,7 +124,7 @@ const setupAuth = (app) => {
   // actually said it was ok.
   // The actual route handler is just going to redirect us to the home page.
   app.get('/github/auth',
-    passport.authenticate('github', { failureRedirect: '/login' }),
+    passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
       // if you don't have your own route handler after the passport.authenticate middleware
       // then you get stuck in the infinite loop

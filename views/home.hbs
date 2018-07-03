@@ -27,6 +27,20 @@
     <div class="customHeaderRight">
 
         <div class="navRight">
+
+            {{#if isLoggedIn}}
+            
+            <!--User Greet Message-->
+            <span>Good morning, {{profile.alias}}!</span>
+
+            <!--User Avatar-->
+            <img src="{{profile.github_avatar_url}}" title="{{profile.alias}}">
+
+            {{/if}}
+
+        </div>
+
+        <div class="navRight">
         
             <!--Login / Logout-->
             {{#if isLoggedIn}}
@@ -73,7 +87,7 @@
 
             <div>
 
-                <a href="/{{id}}">{{categoryname}}</a>
+                <a href="/category/{{id}}">{{categoryname}}</a>
 
             </div>
 
@@ -83,7 +97,7 @@
 
         </div>
 
-</div>
+    </div>
 
 
     <!--Small Box Container-->
@@ -94,6 +108,8 @@
 
             <!--Content Title-->
             <span id="smallBoxTitle"><i class="fa fa-cloud"></i> WEATHER</i></span>
+
+            <span>{{currentWeather}}</span>
 
         </div>
 
