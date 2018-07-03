@@ -3,18 +3,17 @@
     <!--Topics Language Title-->
     <div class="topicsHeaderLeft">
 
-        {{#with category}}
-
-            <span>{{categoryname}} Topics</span>
-        
-        {{/with}}
+            <span>{{category.categoryname}} Topics</span>
 
     </div>
 
     
-    <!--Create New Post-->
+    <!--Return Home-->
     <div class="topicsHeaderRight">
 
+        <a href="/">Return Home</a>
+
+    <!--Create New Post-->
         <a href="/category/{{category.id}}/new-topic">Create New Topic</a>
 
     </div>
@@ -28,18 +27,17 @@
 <div class="topicsListWrapper">
 
     <!--Topics Selection-->
-    {{#if topics}}
     {{#each topics}}
     
     <div class="topicsList">
 
         <div class="topicsListRow">
 
-            <a href="/{{id}}">{{topictitle}}</a>
+            <a href="/category/{{../category.id}}/topic/{{id}}">{{topictitle}}</a>
 
             <br>
 
-            <span>Created By:</span>
+            <span>Created By: {{../topicauthor.alias}}</span>
 
             <br>
 
@@ -48,6 +46,5 @@
     </div>
 
     {{/each}}
-    {{/if}}
 
 </div>

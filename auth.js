@@ -13,6 +13,9 @@ const setupAuth = (app) => {
   // #1 set up cookie middleware
   // app.use(cookieParser());
 
+  const siteDB = require("./db");
+
+
   // #2 set up session middleware
   app.use(session({
     secret: 'BAJCKBjdbajkbjkchhjcvsdcbha7826674523742',
@@ -27,15 +30,33 @@ const setupAuth = (app) => {
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "http://localhost:5000/github/auth"
   }, (accessToken, refreshToken, profile, done) => {
+    siteDB.getUserByGitId(Number(profile.id))
+    .then((data) => {
+      if(data) {
+        return done(null, profile);
+      } else {
+        console.log(profile)
+        siteDB.addUser(profile._json.name, profile.id, profile._json.avatar_url, profile._json.url, profile._json.created_at, profile._json.bio, profile._json.location, profile._json.html_url)
+        .then(() =>{
+          console.log("added the user");
+          return done(null, profile);
+        });
+      }
+    });
+  }
+));
 
-    return done(null, profile);
     // // TODO: replace this with code that finds the user
     // // in the database.
     // let theUser = users.find(u => u.id === profile.id);
 
-    //let userName = req.session.passport.user.profile (you left off here last night...)
+    // if (theUser) {
+    //   return done(null, user);
+    // } else {
+    //   return done({ message: 'That totally did not work'}, null);
+    // }
 
-  }));
+  
 
 
   // #4 call passport.serializeUser
@@ -93,12 +114,13 @@ const setupAuth = (app) => {
   // actually said it was ok.
   // The actual route handler is just going to redirect us to the home page.
   app.get('/github/auth',
-    passport.authenticate('github', { failureRedirect: '/login' }),
+    passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
       // if you don't have your own route handler after the passport.authenticate middleware
       // then you get stuck in the infinite loop
 
       console.log('you just logged in');
+      console.log(req.session.passport.user);
       console.log(req.isAuthenticated());
       req.session.save(() => {
         res.redirect('/');

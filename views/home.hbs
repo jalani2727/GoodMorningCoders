@@ -27,6 +27,20 @@
     <div class="customHeaderRight">
 
         <div class="navRight">
+
+            {{#if isLoggedIn}}
+            
+            <!--User Greet Message-->
+            <span>Good morning, {{profile.alias}}!</span>
+
+            <!--User Avatar-->
+            <img src="{{profile.github_avatar_url}}" title="{{profile.alias}}">
+
+            {{/if}}
+
+        </div>
+
+        <div class="navRight">
         
             <!--Login / Logout-->
             {{#if isLoggedIn}}
@@ -40,7 +54,7 @@
             {{/if}}
 
             <!--Profile-->
-            <a href="/{{accountID}}/profile">Profile</a>
+            <a href="/userprofile">Profile</a>
 
             <!--Link-->
             <a href="/about">About</a>
