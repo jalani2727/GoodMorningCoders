@@ -128,12 +128,26 @@ app.get("/", function(request, response) {
     
     //Set Page Render
     //Get All Coding Categories
-    var userSession = request.session.passport.user;
+    var userSession = null
+    if (request.session && request.session.passport && request.session.passport.user) {
+        userSession = request.session.passport.user;
+    
+    }
+
     Promise.all([
         siteDB.getUserByGitId(Number(userSession)),
         siteDB.getAllCategories(),
     ])
     .then(function(data) {
+        console.log( data[0])
+        response.render("home", {
+            layout: "homepage",
+            title: "Good Morning Coders",
+            homeBG: homeBG,
+            category: data[1],
+            profile: data[0],
+            isLoggedIn: request.isAuthenticated()
+        });
         siteDB.getWeather(data[0].github_location)
         .then(function(weatherData) {
             //Weather Icon
@@ -153,7 +167,6 @@ app.get("/", function(request, response) {
                 isLoggedIn: request.isAuthenticated()
             });
         })
-        //console.log(weather_wind: data[2].wind.speed);
     })
     .catch(function(error) {console.log(error)});
 });

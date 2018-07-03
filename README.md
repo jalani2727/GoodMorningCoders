@@ -4,6 +4,8 @@ Good Morning Coders brings coders of many popular programming languages together
 
 ## Authors
 * **Ryan Miller** - [Ryan's GitHub](https://github.com/Ryan330)
+* **Jalani Paul** - [Jalani's GitHub](https://github.com/jalani2727)
+
 
 ## Built With
 * HTML
@@ -17,7 +19,9 @@ Good Morning Coders brings coders of many popular programming languages together
 * Visual Studio Code
 
 ## Development Process
-
+* **Jalani** - I saw that Ryan was interested in building something that functioned similar to StackOverflow with a dashboard component on the homepage. In the beginning stages, I authored the tables for the databse which were subject to change throughout the development process as we re-configured the functionality of the website. I also set up the route pathways which were subject to changing as we re-organized how the user-flow for the site would work. 
+After establishing routes, the set up of user authentiation via passport was assigned to me as well.
+Although Ryan wrote the actual code , I provided feedback on the homepage layout and suggested the organization of the homepage as it is currently.
 ### -Concept-
 The concept of Good Morning Coders is to develop a site where computer programmers can come together to either share their knowledge of the art of coding regardless of what language it is, share their projects or project ideas, and resolve any of the common issues coders face on the daily basis.
 

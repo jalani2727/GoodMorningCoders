@@ -21,6 +21,7 @@ values
 ('Java'),
 ('Ruby'),
 ('Perl')
+;
 
 
 
@@ -57,7 +58,7 @@ create table users (
     join_date timestamp not null,
     bio varchar(2000),
     github_location varchar(200),
-    html_url varchar(100) not null
+    html_url varchar(100) NOT NULL
 );
 
 

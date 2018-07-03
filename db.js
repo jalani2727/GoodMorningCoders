@@ -68,7 +68,10 @@ function addUser(alias, github_id, github_avatar_url, github_url, join_date, bio
 }
 
 function getUserByGitId (userid) {
-    return db.oneOrNone("select * from users where github_id = $1;", [userid]);
+    return db.oneOrNone("select * from users where github_id = $1;", [userid]
+)
+.catch(err => {
+    return "lolololololo"});
 }
 
 
@@ -125,7 +128,9 @@ module.exports = {
     addUser,
     getUserByGitId,
     addComment,
+    getAllComments
     getAllComments,
     getWeather,
     getWeatherIcon
 }
+

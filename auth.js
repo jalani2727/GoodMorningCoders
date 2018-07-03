@@ -104,8 +104,11 @@ const setupAuth = (app) => {
 
   app.get('/logout', function(req, res, next) {
     console.log('logging out');
-    req.logout();
-    res.redirect('/');
+    req.session.destroy((err) => {
+      if(err) return next(err)
+      req.logout()
+      res.redirect('/')
+    });
   });
 
   // Our auth route is what Github will redirect to after the user logs in
