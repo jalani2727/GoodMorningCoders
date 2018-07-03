@@ -158,7 +158,6 @@ app.get("/", function(request, response) {
                 isLoggedIn: request.isAuthenticated()
             });
         })
-        //console.log(weather_wind: data[2].wind.speed);
     })
     .catch(function(error) {console.log(error)});
 });
