@@ -28,6 +28,10 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: false}));
 
 
+//Request Promise
+const rp = require("request-promise");
+
+
 //Site Database
 const siteDB = require("./db");
 
@@ -69,9 +73,6 @@ var nightBG = [
     "/images/backgrounds/night3.jpeg",
     "/images/backgrounds/night4.jpg"
 ]
-
-
-//http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6
 
 
 
@@ -122,23 +123,37 @@ app.get("/", function(request, response) {
         homeBG = nightBG[Math.floor(Math.random() * nightBG.length)];
     }
 
+
+
     
     //Set Page Render
     //Get All Coding Categories
     var userSession = request.session.passport.user;
     Promise.all([
         siteDB.getUserByGitId(Number(userSession)),
-        siteDB.getAllCategories()
+        siteDB.getAllCategories(),
     ])
     .then(function(data) {
-        response.render("home", {
-            layout: "homepage",
-            title: "Good Morning Coders",
-            homeBG: homeBG,
-            category: data[1],
-            profile: data[0],
-            isLoggedIn: request.isAuthenticated()
-        });
+        siteDB.getWeather(data[0].github_location)
+        .then(function(weatherData) {
+            //Weather Icon
+            var iconID = weatherData.weather[0].icon;
+            var weatherIcon = `http://openweathermap.org/img/w/${iconID}.png`;
+            response.render("home", {
+                layout: "homepage",
+                title: "Good Morning Coders",
+                homeBG: homeBG,
+                category: data[1],
+                profile: data[0],
+                weather_temperature: weatherData.main.temp,
+                weather_description: weatherData.weather[0].description.toUpperCase(),
+                weather_icon: weatherIcon,
+                weather_location: data[0].github_location.toUpperCase(),
+                weather_wind: weatherData.wind.speed,
+                isLoggedIn: request.isAuthenticated()
+            });
+        })
+        //console.log(weather_wind: data[2].wind.speed);
     })
     .catch(function(error) {console.log(error)});
 });

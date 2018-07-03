@@ -114,7 +114,7 @@ const setupAuth = (app) => {
   // actually said it was ok.
   // The actual route handler is just going to redirect us to the home page.
   app.get('/github/auth',
-    passport.authenticate('github', { failureRedirect: '/' }),
+    passport.authenticate('github', { failureRedirect: '/login' }),
     (req, res) => {
       // if you don't have your own route handler after the passport.authenticate middleware
       // then you get stuck in the infinite loop

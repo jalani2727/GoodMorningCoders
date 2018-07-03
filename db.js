@@ -1,4 +1,5 @@
-//Init PG-Promise
+//Init
+//PG-Promise
 const pgp = require("pg-promise")();
 const cn = {
     host: "localhost",
@@ -9,6 +10,14 @@ const cn = {
 };
 
 const db = pgp(cn);
+
+
+//Request Promise
+const rp = require("request-promise");
+
+
+//Weather API
+
 
 
 
@@ -79,6 +88,32 @@ function getAllComments(id) {
 
 
 
+//Weather API Functions
+//Get Current Weather
+function getWeather(location = "Atlanta, GA") {
+    console.log("this is the location")
+    location = location.split(",")
+    console.log(location[0])
+    var weatherAPI = `http://api.openweathermap.org/data/2.5/weather?q=${location[0]}&APPID=6049e97e68a2e932a3e253ab7d0423a6`;
+    return rp(weatherAPI)
+    .then(function(body) {
+        return JSON.parse(body);
+    })
+    .catch(function(error) {console.log(error)});
+}
+
+//Weather Icon
+function getWeatherIcon() {
+    return rp(weatherIcon)
+    .then(function(body, img) {
+        return JSON.parse(body, img);
+    })
+    .catch(function(error) {console.log(error)});
+}
+
+
+
+
 //Export All Functions
 module.exports = {
     getAllCategories,
@@ -90,5 +125,7 @@ module.exports = {
     addUser,
     getUserByGitId,
     addComment,
-    getAllComments
+    getAllComments,
+    getWeather,
+    getWeatherIcon
 }

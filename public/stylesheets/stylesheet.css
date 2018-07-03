@@ -208,6 +208,8 @@ body {
 .contentBoxSmall {
     background-color: rgba(0, 0, 0, 0.5);
 
+    font-size: 20px;
+
     height: 250px;
     width: 250px;
 
@@ -260,6 +262,15 @@ body {
     font-size: 24px;
 }
 
+#weatherIcon {
+    height: 100px;
+    width: 100px;
+}
+
+.weatherBox {
+    height: 100%;
+    width: 100%;
+}
 
 
 
