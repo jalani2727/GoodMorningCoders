@@ -74,8 +74,6 @@ var nightBG = [
 //http://api.openweathermap.org/data/2.5/weather?q=Atlanta&APPID=6049e97e68a2e932a3e253ab7d0423a6
 
 
-<<<<<<< HEAD
-=======
 
 
 //User Profile Page
@@ -96,7 +94,6 @@ siteDB.getUserByGitId(Number(userSession))
         });
 });
 
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
 
 
 //Homepage
@@ -128,18 +125,18 @@ app.get("/", function(request, response) {
     
     //Set Page Render
     //Get All Coding Categories
-<<<<<<< HEAD
-    siteDB.getAllCategories()
-    .then(function(data) {
-        console.log(data);
-=======
-    var userSession = request.session.passport.user;
+    var userSession = null
+    if (request.session && request.session.passport && request.session.passport.user) {
+        userSession = request.session.passport.user;
+    
+    }
+
     Promise.all([
         siteDB.getUserByGitId(Number(userSession)),
         siteDB.getAllCategories()
     ])
     .then(function(data) {
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
+        console.log( data[0])
         response.render("home", {
             layout: "homepage",
             title: "Good Morning Coders",
@@ -155,41 +152,6 @@ app.get("/", function(request, response) {
 
 
 
-<<<<<<< HEAD
-// Go to userprofile page 
-
-app.get("/userprofile", ensureAuthenticated, (request, response) => {
-    console.log(request.session)
-    var userSession = request.session.passport.user
-    siteDB.getUserByGitId(Number(userSession))
-    .then((data) => {
-        console.log(data)
-        if(data){
-            response.render("profile", {
-                data: data,
-                layout: "profilepage"
-            //     alias: data.alias,
-            //     githubavatar: data.github_avatar_url,
-            //     gitURL: data.github_url
-            });
-           
-        } else {
-            response.redirect("/");
-        }})
-            .catch((error) => { 
-                console.log(error); 
-            });
-        });
-    
-
-
-//Topics Page
-app.get("/category/:id", function(request, response) {
-    //Check Category and Existing Topics
-    Promise.all([siteDB.getOneCategory(request.params.id), siteDB.getAllTopics(request.params.id)])
-    .then(function(data) {
-        console.log(data);
-=======
 //Topics Page
 app.get("/category/:id", function(request, response) {
     //Check Category and Existing Topics
@@ -201,15 +163,11 @@ app.get("/category/:id", function(request, response) {
         siteDB.getTopicAuthor(request.params.id)
     ])
     .then(function(data) {
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
         response.render("topics", {       
             layout: "topicspage",
             category: data[0],
             topics: data[1],
-<<<<<<< HEAD
-=======
             topicauthor: data[2],
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
             isLoggedIn: request.isAuthenticated()
             
         });
@@ -220,15 +178,6 @@ app.get("/category/:id", function(request, response) {
 
 //Create New Topic
 app.get("/category/:id/new-topic", function(request, response) {
-<<<<<<< HEAD
-    //Check Category
-    siteDB.getOneCategory(request.params.id)
-    .then(function(data) {
-        console.log(data.id)
-        response.render("newtopic", {
-            layout: "newtopicpage",
-            category: data,
-=======
     //Check Category and User topicauthor
     var userSession = request.session.passport.user;
     Promise.all([
@@ -241,7 +190,6 @@ app.get("/category/:id/new-topic", function(request, response) {
             layout: "newtopicpage",
             category: data[0],
             topic: data[1],
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
             isLoggedIn: request.isAuthenticated()
         });
     })
@@ -249,20 +197,6 @@ app.get("/category/:id/new-topic", function(request, response) {
 });
 
 app.post("/category/:id/new-topic", function(request, response) {
-<<<<<<< HEAD
-    console.log(request.body);
-    //Add Topic and Content to Database
-    Promise.all([
-        siteDB.getOneCategory(request.params.id),
-        siteDB.addTopic(request.body.topictitle, request.body.topiccontent, request.params.id)
-    ])
-    .then(function(data) {
-        response.redirect(`/category/${data[0].id}`);
-        console.log(data);
-    })
-    .catch(function(error) {console.log(error)});
-});
-=======
     //Add Topic Title and Content to Database
     Promise.all([
         siteDB.getOneCategory(request.params.id),
@@ -315,7 +249,6 @@ app.post("/category/:id/topic/:topicid", function(request, response) {
     .catch(function(error) {console.log(error)});
 });
 
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
 
 
 

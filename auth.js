@@ -36,17 +36,7 @@ const setupAuth = (app) => {
         return done(null, profile);
       } else {
         console.log(profile)
-<<<<<<< HEAD
-        console.log(profile._json.name)
-        console.log(profile.id)
-        console.log(profile._json.avatar_url)
-        console.log(profile._json.url)
-        console.log(profile._json.updated_at)
-        console.log(profile._json.bio)
-        siteDB.addUser(profile._json.name, profile.id, profile._json.avatar_url, profile._json.url, profile._json.updated_at,profile._json.bio)
-=======
         siteDB.addUser(profile._json.name, profile.id, profile._json.avatar_url, profile._json.url, profile._json.created_at, profile._json.bio, profile._json.location, profile._json.html_url)
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
         .then(() =>{
           console.log("added the user");
           return done(null, profile);
@@ -114,8 +104,11 @@ const setupAuth = (app) => {
 
   app.get('/logout', function(req, res, next) {
     console.log('logging out');
-    req.logout();
-    res.redirect('/');
+    req.session.destroy((err) => {
+      if(err) return next(err)
+      req.logout()
+      res.redirect('/')
+    });
   });
 
   // Our auth route is what Github will redirect to after the user logs in

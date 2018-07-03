@@ -16,11 +16,7 @@ const db = pgp(cn);
 //Category Functions
 //Get All Categories
 function getAllCategories() {
-<<<<<<< HEAD
-    return db.any('select * from categories');
-=======
     return db.any("select * from categories");
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
 }
 
 //Get All Categories
@@ -51,69 +47,6 @@ function deleteTopic(topictitle) {
 
 
 
-<<<<<<< HEAD
-// Users Page Functions 
-
-function addUser(alias,github_id,github_avatar_url,github_url,join_date,bio)
-{console.log("about to add user")
-  return db.query("insert into users (alias, github_id, github_avatar_url, github_url, join_date, bio) VALUES ('$1#', $2, '$3#', '$4#', '$5#', '$6#') returning userid",
-      [alias,github_id,github_avatar_url,github_url,join_date,bio])
-    
-      
-}
-
-function editUserInfo(alias,bio){
-  return db.query("update users set bio= $1, alias= $2 ")
-}
-  
-  
-  // Get-Functions
-  // Get-Functions for use on all pages
-  function getGithubData() {
-    return db.query("select * from users")
-  }
-
-  function getUserByGitId (userid) {
-    console.log(userid)
-    console.log("AJHDIHGFOIAGOS")
-    return db.oneOrNone("select * from users where github_id = $1;", [userid]);
-  }
- 
-  
-  
-  
-
-  
-  // Post Display Page 
-  // use the get functions to show the post title and contents
-  
-  function editComment(editedComment) {
-    return db.query("update comments set commentcontent = '$1#'", [editedComment]);
-  }
-  
-  function createComment(newComment) {
-    return db.query("insert into comments (commentcontent) values ('$1#')", [newComment]);
-  }
-  
-  function deleteCommentById(id) {
-    return db.query("delete from comments where id= '$1'", [id])
-  }
-  
-  
-  // Update-Posts Page
-  function editPostTitle(editedTitle) {
-    return db.query("update posts set posttitle = '$1#'", [editedTitle])
-  }
-  
-  function editPostContent(editedContent) {
-    return db.query("update posts set postcontent = '$1#'", [editedContent])
-  }
-  
-  
-  
-  
-  module.exports = {
-=======
 
 //Topic Functions
 //Get All Topics
@@ -147,7 +80,10 @@ function addUser(alias, github_id, github_avatar_url, github_url, join_date, bio
 }
 
 function getUserByGitId (userid) {
-    return db.oneOrNone("select * from users where github_id = $1;", [userid]);
+    return db.oneOrNone("select * from users where github_id = $1;", [userid]
+)
+.catch(err => {
+    return "lolololololo"});
 }
 
 
@@ -169,30 +105,14 @@ function getAllComments(id) {
 
 //Export All Functions
 module.exports = {
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
     getAllCategories,
     getOneCategory,
     getAllTopics,
     getOneTopic,
     addTopic,
-<<<<<<< HEAD
-    deleteTopic,
-    addUser,
-    editUserInfo,
-    getGithubData,
-    getUserByGitId,
-    editComment,
-    createComment,
-    deleteCommentById,
-    editPostTitle,
-    editPostContent
-
-  };
-=======
     getTopicAuthor,
     addUser,
     getUserByGitId,
     addComment,
     getAllComments
 }
->>>>>>> f6f0d5967ed853e137dfbaf963f411d22a8b10e0
