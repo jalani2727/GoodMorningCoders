@@ -73,19 +73,7 @@ function editUserInfo(alias,bio){
     console.log("AJHDIHGFOIAGOS")
     return db.oneOrNone("select * from users where github_id = $1;", [userid]);
   }
-  
-  function getCategoryNameById(id) {
-    return db.any("select categoryname from categories where id = '$1'", [id]);
-  }
-  
-  function getTopicNameById(id) {
-    return db.any("select topicname from topics where id = '$1'", [id]);
-  }
-  
-
-  function getCommentsById(id) {
-    return db.any("select commentcontent from comments where id = '$1'", [id]);
-  }
+ 
   
   
   
@@ -130,9 +118,6 @@ function editUserInfo(alias,bio){
     editUserInfo,
     getGithubData,
     getUserByGitId,
-    getCategoryNameById,
-    getTopicNameById,
-    getCommentsById,
     editComment,
     createComment,
     deleteCommentById,

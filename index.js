@@ -119,8 +119,7 @@ app.get("/", function(request, response) {
     .catch(function(error) {console.log(error)});
 });
 
-// HOW AND WHEN DO I ACTUALLY ADD THE USER DATA TO THE USERS TABLE IF IT ISNT THERE???
-// WHEN THE USER HITS LOG IN???
+
 
 
 // Go to userprofile page 
