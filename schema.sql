@@ -4,7 +4,7 @@ create table categories (
     categoryname varchar(50)
 );
 
---Implement All Coding Languanges--
+--Implement All Coding Languages--
 insert into categories (categoryname)
 values 
 ('HTML'),
@@ -37,6 +37,7 @@ create table topics (
 
 
 
+
 --Comments Data--
 create table comments (
     id serial primary key,
@@ -47,15 +48,26 @@ create table comments (
 
 
 
+
 --Users Data--
 create table users (
     userid serial primary key,
-    alias varchar(30) NOT NULL,
-    github_id integer NOT NULL,
-    github_avatar_url varchar(200) NOT NULL,
-    github_url varchar(100) NOT NULL,
-    join_date timestamp NOT NULL,
+    alias varchar(30) not null,
+    github_id integer not null,
+    github_avatar_url varchar(200) not null,
+    join_date timestamp not null,
     bio varchar(2000),
     github_location varchar(200),
     html_url varchar(100) NOT NULL
+);
+
+
+
+
+--Weather Data--
+create table weather (
+    id serial primary key,
+    temperature integer not null,
+    city varchar(200),
+    sky_description varchar(200)
 );
